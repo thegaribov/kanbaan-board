@@ -1,0 +1,52 @@
+version: "3.9"
+
+# NOTE: If you want connect to PostgreSql container from pgadmin4
+# Host name/address: localhost (local) or IPv4 address (remote)
+# Port : 5433
+# User : <user_id>
+# Passoword : <user_password>
+
+services:
+  postgre-db:
+    container_name: postgre-db
+    restart: "always"
+    image: postgis/postgis:13-3.1-alpine
+    volumes:
+        - postgre-db-data:/var/lib/postgresql/data
+    env_file: envs/postgre-db.env
+    ports:
+        # Bind host port 5433 to Postgre container's port 5432
+        - "5433:5432" 
+
+  web:
+    container_name: "web"
+    restart: always
+    volumes:
+      - web-data:/app/wwwroot/uploads
+    build:
+      context: ../backend
+      dockerfile: Ramzioglu.Web/Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      - "postgre-db"
+    env_file: envs/web.env
+
+  #To check container logs
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - portainer-data:/data
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - 9000:9000
+
+volumes:
+  postgre-db-data:
+  web-data:
+  portainer-data:
