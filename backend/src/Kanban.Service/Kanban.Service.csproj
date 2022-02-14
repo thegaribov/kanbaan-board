@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Kanban,DataAccess\Kanban.DataAccess.csproj" />
+    <ProjectReference Include="..\Kanban.DataAccess\Kanban.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

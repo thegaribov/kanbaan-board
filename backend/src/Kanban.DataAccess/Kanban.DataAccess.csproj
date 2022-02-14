@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Repositories\Abstracts\" />
+    <Folder Include="Repositories\Implementations\" />
+    <Folder Include="Persistance\Configurations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Kanban.Core\Kanban.Core.csproj" />
+  </ItemGroup>
+
+</Project>

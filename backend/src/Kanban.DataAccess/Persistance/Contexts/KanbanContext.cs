@@ -1,6 +1,5 @@
 ﻿using Kanban.Core.Entities;
 using Kanban.Core.Entities.Common;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,7 +16,6 @@ namespace Kanban.DataAccess.Persistance.Contexts
     {
         public KanbanContext(DbContextOptions<KanbanContext> options) : base(options) { }
 
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
@@ -25,7 +23,7 @@ namespace Kanban.DataAccess.Persistance.Contexts
             base.OnModelCreating(builder);
         }
 
-        #region Auditing
+        #region Date logs
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
         {
