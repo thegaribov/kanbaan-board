@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Kanban.DataAccess.Persistance.Contexts
 {
-    public class KanbanContext : IdentityDbContext<User, IdentityRole, string>
+    public class KanbanContext : IdentityDbContext<User>
     {
         public KanbanContext(DbContextOptions<KanbanContext> options) : base(options) { }
 
