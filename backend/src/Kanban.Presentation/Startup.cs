@@ -1,4 +1,4 @@
-using Kanban.DataAccess.Contexts;
+using Kanban.DataAccess.Persistance.Contexts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -44,7 +44,7 @@ namespace Kanban.Presentation
 
                 opt.UseNpgsql(dbConnectionString, options => {
                     options.UseNetTopologySuite();
-                    options.MigrationsAssembly("Ramzioglu.DataAccess");
+                    options.MigrationsAssembly("Ramzioglu.DataAccess.Persistance");
                 }
                 );
             }
