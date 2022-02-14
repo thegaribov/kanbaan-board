@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Kanban.Core.Entities
 {
-    internal class UserOrganisation : IEntity, ICreatedAt, IUpdatedAt
+    public  class UserOrganisation : IEntity, ICreatedAt, IUpdatedAt
     {
         public string UserId { get; set; }
         public User User { get; set; }

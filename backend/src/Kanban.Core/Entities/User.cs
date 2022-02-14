@@ -18,5 +18,7 @@ namespace Kanban.Core.Entities
         public DateTime CreatedAt { get; set; }
 
         #endregion
+
+        //public ICollection<UserOrganisation> UserOrganisations { get; set; }
     }
 }

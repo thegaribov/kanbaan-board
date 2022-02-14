@@ -20,11 +20,7 @@ namespace Kanban.Core.Entities
         public DateTime CreatedAt { get; set; }
 
         #endregion
-
-        public enum Role : byte
-        {
-            Admin = 0,
-            Member = 1
-        }
+       
+        //public ICollection<UserOrganisation> UserOrganisations { get; set; }
     }
 }

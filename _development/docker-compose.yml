@@ -24,8 +24,8 @@ services:
     volumes:
       - web-data:/app/wwwroot/uploads
     build:
-      context: ../backend
-      dockerfile: Ramzioglu.Web/Dockerfile
+      context: ../backend/src
+      dockerfile: Kanban.Presentation/Dockerfile
     ports:
       - "5000:5000"
     depends_on:
