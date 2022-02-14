@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kanban.Presentation", "Kanb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kanban.Core", "Kanban.Core\Kanban.Core.csproj", "{9B28D58A-6454-4EDC-BC2E-C55B854C728B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kanban,DataAccess", "Kanban,DataAccess\Kanban,DataAccess.csproj", "{3F4424ED-7A31-49A4-B2CD-D02EB54EBF76}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kanban.DataAccess", "Kanban,DataAccess\Kanban.DataAccess.csproj", "{3F4424ED-7A31-49A4-B2CD-D02EB54EBF76}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kanban.Service", "Kanban.Service\Kanban.Service.csproj", "{490CAE27-26F7-4C1B-9767-EEE8EF38C7D0}"
 EndProject
