@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kanban.DataAccess.Repositories
+namespace Kanban.DataAccess.Abstracts.Base
 {
-    public interface IRepository<TEntity>
+    public interface IBaseRepository<TEntity>
         where TEntity : class, IEntity, new()
     {
         Task<List<TEntity>> GetAllAsync();
