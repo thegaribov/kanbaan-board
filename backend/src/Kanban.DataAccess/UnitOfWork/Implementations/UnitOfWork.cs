@@ -1,4 +1,9 @@
-﻿using Kanban.DataAccess.UnitOfWork.Abstracts;
+﻿using Kanban.Core.Entities;
+using Kanban.DataAccess.Persistance.Contexts;
+using Kanban.DataAccess.Repositories.Abstracts;
+using Kanban.DataAccess.Repositories.Implementations;
+using Kanban.DataAccess.UnitOfWork.Abstracts;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +14,29 @@ namespace Kanban.DataAccess.UnitOfWork.Implementations
 {
     public class UnitOfWork : IUnitOfWork
     {
+        private readonly UserManager<User> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly SignInManager<User> _signInManager;
+        private readonly KanbanContext _context;
 
+        public UnitOfWork(
+            UserManager<User> userManager,
+            RoleManager<IdentityRole> roleManager,
+            SignInManager<User> signInManager,
+            KanbanContext context)
+        {
+            _userManager = userManager;
+            _roleManager = roleManager;
+            _signInManager = signInManager;
+            _context = context;
+        }
+
+        private IUserRepository user;
+        public IUserRepository Users => user ??= new UserRepository(_context, _userManager, _signInManager, _roleManager);
+
+        public async Task CommitAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
     }
 }
