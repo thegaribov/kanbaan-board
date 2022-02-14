@@ -8,5 +8,10 @@ namespace Kanban.Presentation.Controllers
         {
             return View();
         }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
     }
 }
