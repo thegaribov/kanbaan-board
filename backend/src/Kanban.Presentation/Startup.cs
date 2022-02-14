@@ -39,12 +39,10 @@ namespace Kanban.Presentation
                 string maxOurPrepare = Environment.GetEnvironmentVariable("POSTGRE_MAX_AUTO_PREPARE");
 
                 var dbConnectionString = @$"Server={serverName};Port={serverPort};Database={databaseName};User Id={userId};Password={userPassword};MaxAutoPrepare={maxOurPrepare}";
- 
-
 
                 opt.UseNpgsql(dbConnectionString, options => {
                     options.UseNetTopologySuite();
-                    options.MigrationsAssembly("Ramzioglu.DataAccess.Persistance");
+                    options.MigrationsAssembly(typeof(KanbanContext).Assembly.FullName);
                 }
                 );
             }
