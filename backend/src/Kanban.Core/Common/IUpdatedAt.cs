@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kanban.Core.Entities.Abstracts
+namespace Kanban.Core.Entities.Common
 {
-    public interface IEntity
+    public interface IUpdatedAt
     {
+        public DateTime UpdatedAt { get; set; }
     }
 }

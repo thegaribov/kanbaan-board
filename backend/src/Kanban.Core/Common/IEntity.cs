@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kanban.Core.Entities.Abstracts
+namespace Kanban.Core.Entities.Common
 {
-    public interface ICreatedAt
+    public interface IEntity
     {
-        public DateTime CreatedAt { get; set; }
+        public Guid Id { get; set; }
     }
 }
