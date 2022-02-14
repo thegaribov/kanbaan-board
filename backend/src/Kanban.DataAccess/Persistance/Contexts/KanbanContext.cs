@@ -16,6 +16,8 @@ namespace Kanban.DataAccess.Persistance.Contexts
     {
         public KanbanContext(DbContextOptions<KanbanContext> options) : base(options) { }
 
+        public DbSet<Organisation> Organisations { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

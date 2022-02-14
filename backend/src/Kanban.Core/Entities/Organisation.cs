@@ -1,5 +1,4 @@
 ﻿using Kanban.Core.Entities.Common;
-using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +7,12 @@ using System.Threading.Tasks;
 
 namespace Kanban.Core.Entities
 {
-    public class User : IdentityUser, IEntity, ICreatedAt, IUpdatedAt
+    public class Organisation : IEntity, ICreatedAt, IUpdatedAt
     {
-        public string FullName { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Address { get; set; }
 
         #region Date logging
 
@@ -18,5 +20,11 @@ namespace Kanban.Core.Entities
         public DateTime CreatedAt { get; set; }
 
         #endregion
+
+        public enum Role : byte
+        {
+            Admin = 0,
+            Member = 1
+        }
     }
 }
