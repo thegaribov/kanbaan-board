@@ -191,5 +191,18 @@ namespace Kanban.Presentation.Controllers
 
 
         #endregion
+
+        #region Board
+
+        [HttpGet("{organisationId}/board", Name = "organisation-board")]
+        public async Task<IActionResult> Board(int organisationId)
+        {
+            var currentUser = await _userService.GetUserAsync(User);
+
+            
+            return View();
+        }
+
+        #endregion 
     }
 }
