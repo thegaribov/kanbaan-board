@@ -18,6 +18,11 @@ namespace Kanban.Service.Business.Data.Implementations
             _unitOfWork = unitOfWork;
         }
 
+        public async Task<Ticket> GetByOrganisation(int ticketId, int organisationId)
+        {
+            return await _unitOfWork.Tickets.GetByOrganisation(ticketId, organisationId);
+        }
+
         public async Task<Dictionary<TicketStatus, List<Ticket>>> GetAllGroupedByOrganisation(int organisationId)
         {
             return await _unitOfWork.Tickets.GetAllGroupedByOrganisation(organisationId);

@@ -14,5 +14,6 @@ namespace Kanban.DataAccess.Repositories.Abstracts
     public interface ITicketRepository : IBaseRepository<Ticket>
     {
         Task<Dictionary<TicketStatus, List<Ticket>>> GetAllGroupedByOrganisation(int organisationId);
+        Task<Ticket> GetByOrganisation(int ticketId, int organisationId);
     }
 }

@@ -88,5 +88,27 @@ namespace Kanban.Presentation.Controllers
         }
 
         #endregion
+
+        #region Delete
+
+        [HttpGet("{organisationId}/delete/{ticketId}", Name = "ticket-delete")]
+        public async Task<IActionResult> Delete(int organisationId, int ticketId)
+        {
+            var currentUser = await _userService.GetUserAsync(User);
+
+            //Check whether organisation belongs to current user or not
+            var isOwner = await _userOrganisationService.IsOwnerAsync(currentUser.Id, organisationId);
+            if (!isOwner) return NotFound();
+
+            //Check tickets exist or not
+            var ticket = await _ticketService.GetByOrganisation(ticketId, organisationId);
+
+            await _ticketService.DeleteAsync(ticket);
+
+            return RedirectToRoute("organisation-board", new { organisationId = organisationId });
+        }
+
+
+        #endregion
     }
 }
