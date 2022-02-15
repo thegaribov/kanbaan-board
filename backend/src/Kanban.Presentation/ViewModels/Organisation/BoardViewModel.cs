@@ -7,6 +7,6 @@ namespace Kanban.Presentation.ViewModels.Organisation
     {
         public int OrganisationId { get; set; }
         public string OrganisationName { get; set; }
-        public List<Dictionary<TicketStatus, List<BoardTicketViewModel>>> GroupedTickets { get; set; }
+        public Dictionary<TicketStatus, List<Core.Entities.Ticket>> GroupedTickets { get; set; }
     }
 }

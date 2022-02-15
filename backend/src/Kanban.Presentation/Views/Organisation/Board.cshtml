@@ -1,5 +1,8 @@
 ﻿@using Kanban.Core.Enums.Ticket
 @using Kanban.Core.Extensions.Enum
+@using Kanban.Presentation.ViewModels.Organisation
+
+@model BoardViewModel
 
 @{
     ViewData["Title"] = "Board";
@@ -17,7 +20,9 @@
                     <li class="breadcrumb-item active">Board</li>
                 </ol>
             </div>
-            <h4 class="page-title">Garibov company</h4>
+            <h4 class="page-title">
+                @Model.OrganisationName
+            </h4>
         </div><!--end page-title-box-->
     </div><!--end col-->
 </div>
@@ -30,71 +35,80 @@
         <div class="card">
             <div class="card-body">
                 <div class="kanban-board">
-                    @foreach (var ticketStatus in Enum.GetValues<TicketStatus>())
+                    @foreach (var ticketColumn in Model.GroupedTickets)
                     {
                         <div class="kanban-col">
                             <div class="kanban-main-card">
                                 <div class="kanban-box-title">
                                     <h4 class="header-title mb-3">
-                                        @ticketStatus.GetDisplayName()
+                                        @ticketColumn.Key.GetDisplayName()
                                     </h4>
                                     <div class="dropdown kanban-main-dropdown">
                                         <a class="dropdown-toggle arrow-none" id="drop1" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                             <i class="las la-ellipsis-v font-24 text-muted"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="drop1">
-                                            <a class="dropdown-item" >Add Task</a>
+                                            <a asp-route="ticket-create" asp-route-organisationId="@Model.OrganisationId" class="dropdown-item">Add Ticket</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div id="project-list-left" class="pb-1">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="dropdown d-inline-block float-end">
-                                                <a class="dropdown-toggle mr-n2 mt-n2" id="drop2" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                                    <i class="las la-ellipsis-v font-14 text-muted"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="drop2">
-                                                    <a class="dropdown-item" href="#">Edit</a>
-                                                    <a class="dropdown-item" href="#">Delete</a>
-                                                </div>
-                                            </div>
-                                            <h5 class="my-1 font-14">Google API integration</h5>
-                                            <p class="text-muted mb-2">
-                                                Lorem ipsum generatior is aa
-                                            </p>
-                                            <p class="text-muted mb-2">
-                                                Ticket #1
-                                            </p>
-                                            <div class="row justify-content-center">
-                                                <div class="col-6 align-self-center">
-                                                    @*<ul class="list-inline mb-0"></ul>*@
-                                                </div>
-                                                <div class="col-6 align-self-center">
-                                                    <a class="float-end" href="#" title="Mahmood Garibov">
-                                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUepaBdMZtoy5GmiKF_v1vkRbwo3MgxAiIwcaztDaqiYwLdV58jhq19hUX00btfdkBUF8&amp;usqp=CAU" alt="user" class="thumb-xs rounded-circle">
+
+                                    @foreach (var ticket in ticketColumn.Value)
+                                    {
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="dropdown d-inline-block float-end">
+                                                    <a class="dropdown-toggle mr-n2 mt-n2" id="drop2" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                                        <i class="las la-ellipsis-v font-14 text-muted"></i>
                                                     </a>
-                                                    <a class="float-end" href="#" title="Eldar Bayramov">
-                                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUepaBdMZtoy5GmiKF_v1vkRbwo3MgxAiIwcaztDaqiYwLdV58jhq19hUX00btfdkBUF8&amp;usqp=CAU" alt="user" class="thumb-xs rounded-circle">
-                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="drop2">
+                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="row mt-2">
-                                                <div>
-                                                    <span class="badge badge-soft-success me-2">Open</span>
-                                                    <div class="mt-2">
-                                                        <span>
-                                                            <i class="far fa-fw fa-clock"></i>25 June, 2021
+                                                <h5 class="my-1 font-14">
+                                                    @ticket.Title
+                                                </h5>
+                                                <p class="text-muted mb-2">
+                                                    @ticket.Description
+                                                </p>
+                                                <p class="text-muted mb-2">
+                                                    Ticket #@ticket.Id
+                                                </p>
+                                                <div class="row justify-content-center">
+                                                    <div class="col-6 align-self-center">
+                                                        @*<ul class="list-inline mb-0"></ul>*@
+                                                    </div>
+                                                    <div class="col-6 align-self-center">
+                                                        @foreach (var userTicket in ticket.UserTickets)
+                                                        {
+                                                            <a class="float-end" href="#" title="@userTicket.User.FullName">
+                                                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUepaBdMZtoy5GmiKF_v1vkRbwo3MgxAiIwcaztDaqiYwLdV58jhq19hUX00btfdkBUF8&amp;usqp=CAU" alt="user" class="thumb-xs rounded-circle">
+                                                            </a>
+                                                        }
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <div>
+                                                        <span class="badge badge-soft-success me-2">
+                                                            @ticketColumn.Key.GetDisplayName()
                                                         </span>
+                                                        <div class="mt-2">
+                                                            <span>
+                                                                <i class="far fa-fw fa-clock"></i> @ticket.Deadline.ToLongDateString()
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    }
+
                                 </div>
-                                <button type="button" class="btn w-100 btn-soft-primary btn-sm">
-                                    Add Task
-                                </button>
+                                <a asp-route="ticket-create" asp-route-organisationId="@Model.OrganisationId" class="btn w-100 btn-soft-primary btn-sm">
+                                    Add Ticket
+                                </a>
                             </div>
                         </div>
                     }
