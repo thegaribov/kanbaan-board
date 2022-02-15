@@ -18,6 +18,8 @@ namespace Kanban.DataAccess.Persistance.Contexts
 
         public DbSet<Organisation> Organisations { get; set; }
         public DbSet<UserOrganisation> UserOrganisations { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<UserTicketOrganisation> UserTicketOrganisations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
