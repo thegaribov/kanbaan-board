@@ -1,0 +1,96 @@
+﻿@using Kanban.Presentation.ViewModels.Organisation
+
+@model OrganisationEditViewModel
+
+@{
+    ViewData["Title"] = "Oranisations";
+}
+
+@section plugin_styles{
+    <link href="~/admin/assets/plugins/select/selectr.min.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="page-title-box">
+            <div class="float-end">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a asp-controller="organisation" asp-action="index">Organisation</a>
+                    </li>
+                    <li class="breadcrumb-item active">Edit</li>
+                </ol>
+            </div>
+            <h4 class="page-title">Edit Orgnisation</h4>
+        </div><!--end page-title-box-->
+    </div><!--end col-->
+</div>
+
+
+@if (TempData["message"] != null)
+{
+    <div class="alert alert-@TempData["message_type"]">
+        @TempData["message"]
+    </div>
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data" asp-controller="organisaton" asp-action="edit" id="form-edit">
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+                        <div asp-validation-summary="ModelOnly" class="invalid-feedback" style="display:block"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="Name"></label>
+                                <input class="form-control" asp-for="Name">
+                                <span asp-validation-for="Name" class="invalid-feedback" style="display:block"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="PhoneNumber"></label>
+                                <input class="form-control" asp-for="PhoneNumber">
+                                <span asp-validation-for="PhoneNumber" class="invalid-feedback" style="display:block"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label asp-for="Address"></label>
+                                <input class="form-control" asp-for="Address">
+                                <span asp-validation-for="Address" class="invalid-feedback" style="display:block"></span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="form-group mt-3">
+                    <button class="btn btn-primary" type="submit" form="form-edit">Save</button>
+                    <a asp-controller="organisaton" asp-action="list" class="btn btn-danger">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section plugin_scripts{
+    <!-- Plugins js -->
+    <script src="~/client/assets/plugins/select/selectr.min.js" asp-append-version="true"></script>
+}
+

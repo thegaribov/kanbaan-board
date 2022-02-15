@@ -8,7 +8,7 @@ namespace Kanban.Core.Enums.Organisation
 {
     public enum OrganisationRole
     {
-        Admin = 0,
+        Owner = 0,
         Member = 1
     }
 }

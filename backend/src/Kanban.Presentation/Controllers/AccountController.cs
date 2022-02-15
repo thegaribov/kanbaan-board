@@ -53,7 +53,7 @@ namespace Kanban.Presentation.Controllers
                     if (result.Succeeded)
                     {
                         if (string.IsNullOrEmpty(returnUrl))
-                            return RedirectToAction("index", "home");
+                            return RedirectToAction("index", "organisation");
 
                         else if (Url.IsLocalUrl(returnUrl))
                             return LocalRedirect(returnUrl);
@@ -118,7 +118,7 @@ namespace Kanban.Presentation.Controllers
                 {
                     OrganisationId = newOrganisation.Id,
                     UserId = newUser.Id,
-                    Role = OrganisationRole.Admin
+                    Role = OrganisationRole.Owner
                 };
 
                 await _userOrganisationService.CreateAsync(organisationUser);

@@ -24,9 +24,29 @@ namespace Kanban.Service.Business.Data.Implementations
             return await _unitOfWork.UserOrganisations.GetAllAsync();
         }
 
+        public async Task<List<UserOrganisation>> GetAllWithUserAndOrganisationByUserAsync(string userId)
+        {
+            return await _unitOfWork.UserOrganisations.GetAllWithUserAndOrganisationByUserAsync(userId);
+        }
+
         public async Task<UserOrganisation> GetAsync(string userId, int organisationId)
         {
             return await _unitOfWork.UserOrganisations.GetAsync(userId, organisationId);
+        }
+
+        public async Task<bool> IsOwnerAsync(string userId, int organisationId)
+        {
+            return await _unitOfWork.UserOrganisations.IsOwnerAsync(userId, organisationId);
+        }
+
+        public async Task<User> GetOrganisationOwnerByOrganisationAsync(int organisationId)
+        {
+            return await _unitOfWork.UserOrganisations.GetOrganisationOwnerByOrganisationAsync(organisationId);
+        }
+
+        public async Task<List<string>> GetOrganisationMembersFullNameAsync(int organisationId)
+        {
+            return await _unitOfWork.UserOrganisations.GetOrganisationMembersFullNameAsync(organisationId);
         }
 
         public async Task CreateAsync(UserOrganisation userOrganisation)

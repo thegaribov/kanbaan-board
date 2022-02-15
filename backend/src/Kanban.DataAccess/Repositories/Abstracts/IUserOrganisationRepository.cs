@@ -13,7 +13,11 @@ namespace Kanban.DataAccess.Repositories.Abstracts
     public interface IUserOrganisationRepository 
     {
         Task<List<UserOrganisation>> GetAllAsync();
+        Task<List<UserOrganisation>> GetAllWithUserAndOrganisationByUserAsync(string userId);
+        Task<User> GetOrganisationOwnerByOrganisationAsync(int organisationId);
+        Task<List<string>> GetOrganisationMembersFullNameAsync(int organisationId);
         Task<UserOrganisation> GetAsync(string userId, int organisationId);
+        Task<bool> IsOwnerAsync(string userId, int organisationId);
         Task CreateAsync(UserOrganisation userOrganisation);
         Task UpdateAsync(UserOrganisation userOrganisation);
         Task DeleteAsync(UserOrganisation userOrganisation);
