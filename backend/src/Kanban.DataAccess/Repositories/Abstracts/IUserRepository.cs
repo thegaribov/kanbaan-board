@@ -34,5 +34,6 @@ namespace Kanban.DataAccess.Repositories.Abstracts
         Task<IdentityResult> ResetPasswordAsync(User user, string token, string password);
         Task<IdentityResult> ChangePasswordAsync(User user, string currentPassword, string newPassword);
         Task<SignInResult> PasswordSignInAsync(User user, string password, bool isPersistent, bool lockoutOnFailure);
+        Task SignOutAsync();
     }
 }

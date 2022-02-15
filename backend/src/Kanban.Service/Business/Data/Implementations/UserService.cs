@@ -123,5 +123,11 @@ namespace Kanban.Service.Business.Data.Implementations
         {
             return await _unitOfWork.Users.PasswordSignInAsync(user, password, isPersistent, lockoutOnFailure);
         }
+
+        public async Task SignOutAsync()
+        {
+            await _unitOfWork.Users.SignOutAsync();
+        }
+
     }
 }

@@ -136,13 +136,13 @@ namespace Kanban.Presentation.Controllers
 
         #region Logout
 
-        //[HttpPost("logout", Name = "account-logout")]
-        //public async Task<IActionResult> Logout()
-        //{
-        //    await _userService.SignOutAsync();
-        //    return RedirectToAction("login", "account");
-        //}
+        [HttpGet("logout", Name = "account-logout")]
+        public async Task<IActionResult> Logout()
+        {
+            await _userService.SignOutAsync();
 
+            return RedirectToRoute("account-login");
+        }
 
         #endregion
     }
