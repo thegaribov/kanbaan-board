@@ -1,5 +1,4 @@
 ﻿using Kanban.Core.Entities;
-using Kanban.DataAccess.Abstracts.Base;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -8,9 +7,9 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kanban.DataAccess.Repositories.Abstracts
+namespace Kanban.Service.Business.Data.Abstracts
 {
-    public interface IUserOrganisationRepository 
+    public interface IUserOrganisationService
     {
         Task<List<UserOrganisation>> GetAllAsync();
         Task<UserOrganisation> GetAsync(string userId, int organisationId);

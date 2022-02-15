@@ -13,14 +13,39 @@ using System.Threading.Tasks;
 
 namespace Kanban.DataAccess.Repositories.Implementations
 {
-    public class UserOrganisationRepository : EFBaseRepository<UserOrganisation>, IUserOrganisationRepository
+    public class UserOrganisationRepository : IUserOrganisationRepository
     {
         private readonly KanbanContext _context;
 
         public UserOrganisationRepository(KanbanContext context)
-            :base(context)
         {
             _context = context;
+        }
+
+        public async Task<List<UserOrganisation>> GetAllAsync()
+        {
+            return await _context.UserOrganisations.ToListAsync();
+        }
+
+        public async Task<UserOrganisation> GetAsync(string userId, int organisationId)
+        {
+            return await _context.UserOrganisations
+                .FirstOrDefaultAsync(uo => uo.UserId == userId && uo.OrganisationId == organisationId);
+        }
+
+        public async Task CreateAsync(UserOrganisation userOrganisation)
+        {
+            await _context.AddAsync(userOrganisation);
+        }
+
+        public async Task DeleteAsync(UserOrganisation userOrganisation)
+        {
+            _context.Remove(userOrganisation);
+        }
+
+        public async Task UpdateAsync(UserOrganisation userOrganisation)
+        {
+            _context.Update(userOrganisation);
         }
     }
 }
