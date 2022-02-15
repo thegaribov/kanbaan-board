@@ -116,6 +116,7 @@ namespace Kanban.Presentation
 
             services.ConfigureApplicationCookie(options =>
             {
+                options.Cookie.Name = "kanban.session";
                 options.LoginPath = "/account/login";
                 options.AccessDeniedPath = "/account/login";
                 options.ExpireTimeSpan = TimeSpan.FromHours(72);
@@ -160,13 +161,14 @@ namespace Kanban.Presentation
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Organisation}/{action=Index}/{id?}");
             });
         }
     }
