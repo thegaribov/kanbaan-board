@@ -1,0 +1,117 @@
+﻿@using Kanban.Presentation.ViewModels.Ticket
+@using Kanban.Core.Enums.Ticket
+
+@model TicketCreateViewModel
+
+@{
+    ViewData["Title"] = "Tickets";
+}
+
+@section plugin_styles{
+<link href="~/admin/assets/plugins/select/selectr.min.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="page-title-box">
+            <div class="float-end">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a asp-route="organisation-index">Organisation</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a asp-route="organisation-board" asp-route-organisationId="@Model.OrganisationId">Board</a>
+                    </li>
+                    <li class="breadcrumb-item active">Create ticket</li>
+                </ol>
+            </div>
+            <h4 class="page-title">@Model.OrganisationName</h4>
+        </div><!--end page-title-box-->
+    </div><!--end col-->
+</div>
+
+
+@if (TempData["message"] != null)
+{
+    <div class="alert alert-@TempData["message_type"]">
+        @TempData["message"]
+    </div>
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data" asp-route="ticket-create" asp-route-id="@Model.OrganisationId" id="form-create">
+                    <input type="hidden" asp-for="OrganisationId" />
+                    <input type="hidden" asp-for="OrganisationName" />
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+                        <div asp-validation-summary="ModelOnly" class="invalid-feedback" style="display:block"></div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="OrganisationName"></label>
+                                <input disabled class="form-control" asp-for="OrganisationName">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label asp-for="Title"></label>
+                                <input class="form-control" asp-for="Title">
+                                <span asp-validation-for="Title" class="invalid-feedback" style="display:block"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label asp-for="Deadline"></label>
+                                <input class="form-control" asp-for="Deadline">
+                                <span asp-validation-for="Deadline" class="invalid-feedback" style="display:block"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label asp-for="Status"></label>
+                                <select class="form-control" asp-for="Status" asp-items="Html.GetEnumSelectList<TicketStatus>()"></select>
+                                <span asp-validation-for="Status" class="invalid-feedback" style="display:block"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label asp-for="Description"></label>
+                                <textarea class="form-control" asp-for="Description"></textarea>
+                                <span asp-validation-for="Description" class="invalid-feedback" style="display:block"></span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="form-group mt-3">
+                    <button class="btn btn-primary" type="submit" form="form-create">Save</button>
+                    <a asp-route="organisation-board" class="btn btn-danger">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section plugin_scripts{
+<!-- Plugins js -->
+<script src="~/client/assets/plugins/select/selectr.min.js" asp-append-version="true"></script>
+}
+

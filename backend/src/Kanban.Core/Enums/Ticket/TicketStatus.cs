@@ -10,15 +10,15 @@ namespace Kanban.Core.Enums.Ticket
     public enum TicketStatus : byte
     {
         [Display(Name = "Open")]
-        Open = 0,
+        Open = 1,
 
         [Display(Name = "In progress")]
-        InProgress = 1,
+        InProgress = 2,
 
         [Display(Name = "Completed")]
-        Completed = 2,
+        Completed = 3,
 
         [Display(Name = "Done")]
-        Done = 3,
+        Done = 4,
     }
 }

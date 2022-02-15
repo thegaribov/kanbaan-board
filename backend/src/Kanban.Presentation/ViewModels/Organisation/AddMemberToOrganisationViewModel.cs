@@ -55,10 +55,10 @@ namespace Kanban.Presentation.ViewModels.Organisation
                 .WithMessage("Fullname can't be empty")
 
                 .MinimumLength(3)
-                .WithMessage("Fullname min length can 3")
+                .WithMessage("Fullname min length can be 3")
 
                 .MaximumLength(25)
-                .WithMessage("Fullname max length can 25");
+                .WithMessage("Fullname max length can be  25");
 
             #endregion
 

@@ -33,10 +33,10 @@ namespace Kanban.Presentation.ViewModels.Organisation
                 .WithMessage("Name can't be empty")
 
                 .MinimumLength(3)
-                .WithMessage("Name min length can 3")
+                .WithMessage("Name min length can be 3")
 
                 .MaximumLength(35)
-                .WithMessage("Name max length can 35");
+                .WithMessage("Name max length can be 35");
 
             #endregion
 
@@ -65,10 +65,10 @@ namespace Kanban.Presentation.ViewModels.Organisation
                 .WithMessage("Address can't be empty")
 
                 .MinimumLength(3)
-                .WithMessage("Address min length can 3")
+                .WithMessage("Address min length can be 3")
 
                 .MaximumLength(40)
-                .WithMessage("Address max length can 40");
+                .WithMessage("Address max length can be 40");
 
             #endregion
         }

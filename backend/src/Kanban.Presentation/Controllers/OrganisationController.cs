@@ -19,15 +19,18 @@ namespace Kanban.Presentation.Controllers
         private readonly IUserService _userService;
         private readonly IOrganisationService _organisationService;
         private readonly IUserOrganisationService _userOrganisationService;
+        private readonly ITicketService _ticketService;
 
         public OrganisationController(
             IUserService userService,
             IOrganisationService organisationService,
-            IUserOrganisationService userOrganisationService)
+            IUserOrganisationService userOrganisationService,
+            ITicketService ticketService)
         {
             _userService = userService;
             _organisationService = organisationService;
             _userOrganisationService = userOrganisationService;
+            _ticketService = ticketService;
         }
 
         #endregion
@@ -195,9 +198,26 @@ namespace Kanban.Presentation.Controllers
         [HttpGet("{organisationId}/board", Name = "organisation-board")]
         public async Task<IActionResult> Board(int organisationId)
         {
+
             var currentUser = await _userService.GetUserAsync(User);
 
-            
+            //Check whether current user takes part in organisation or not
+            var isTakePartIn = await _userOrganisationService.IsTakePartInAsync(currentUser.Id, organisationId);
+            if (!isTakePartIn) return NotFound();
+
+            var organisation = await _organisationService.GetAsync(organisationId);
+
+            //var model = new BoardViewModel
+            //{
+            //    OrganisationName = organisation.Name,
+            //    OrganisationId = organisation.Id,
+            //}
+
+
+            //_ticketService.
+
+
+
             return View();
         }
 

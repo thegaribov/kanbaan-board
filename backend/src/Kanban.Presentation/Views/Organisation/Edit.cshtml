@@ -38,7 +38,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <form method="POST" enctype="multipart/form-data" asp-controller="organisaton-edit" id="form-edit">
+                <form method="POST" enctype="multipart/form-data" asp-route="organisatin-edit" asp-route-id="@Model.Id" id="form-edit">
                     <input type="hidden" asp-for="Id" />
                     @Html.AntiForgeryToken()
 

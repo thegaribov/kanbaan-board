@@ -49,6 +49,12 @@ namespace Kanban.DataAccess.Repositories.Implementations
                 .AnyAsync(uo => uo.UserId == userId && uo.OrganisationId == organisationId && uo.Role == OrganisationRole.Owner);
         }
 
+        public async Task<bool> IsTakePartInAsync(string userId, int organisationId)
+        {
+            return await _context.UserOrganisations
+                .AnyAsync(uo => uo.UserId == userId && uo.OrganisationId == organisationId);
+        }
+
         public async Task<User> GetOrganisationOwnerByOrganisationAsync(int organisationId)
         {
             return (await _context.UserOrganisations

@@ -39,6 +39,11 @@ namespace Kanban.Service.Business.Data.Implementations
             return await _unitOfWork.UserOrganisations.IsOwnerAsync(userId, organisationId);
         }
 
+        public async Task<bool> IsTakePartInAsync(string userId, int organisationId)
+        {
+            return await _unitOfWork.UserOrganisations.IsTakePartInAsync(userId, organisationId);
+        }
+
         public async Task<User> GetOrganisationOwnerByOrganisationAsync(int organisationId)
         {
             return await _unitOfWork.UserOrganisations.GetOrganisationOwnerByOrganisationAsync(organisationId);

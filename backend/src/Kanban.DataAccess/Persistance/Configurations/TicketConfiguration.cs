@@ -21,6 +21,15 @@ namespace Kanban.DataAccess.Persistance.Configurations
 
             #endregion
 
+            #region Organisation
+
+            builder
+                .HasOne<Organisation>(t => t.Organisation)
+                .WithMany(o => o.Tickets)
+                .HasForeignKey(t => t.OrganisationId);
+
+            #endregion
+
             #region Description
 
             builder
