@@ -27,7 +27,7 @@ namespace Kanban.Presentation.Controllers
 
         #region Index
 
-        [HttpGet("", Name = "organisation-index")]
+        [HttpGet("~/", Name = "organisation-index")]
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userService.GetUserAsync(User);

@@ -166,9 +166,7 @@ namespace Kanban.Presentation
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Organisation}/{action=Index}/{id?}");
+                endpoints.MapControllers();
             });
         }
     }
