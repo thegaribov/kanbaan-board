@@ -32,6 +32,7 @@ namespace Kanban.Presentation.ViewModels.Account
             RuleFor(model => model.Email)
                 .Cascade(CascadeMode.Stop)
                 .NotEmpty()
+                .WithMessage("Email can't be empty")
                 .NotNull()
                 .WithMessage("Email can't be empty");
 
@@ -42,6 +43,7 @@ namespace Kanban.Presentation.ViewModels.Account
             RuleFor(model => model.Password)
                 .Cascade(CascadeMode.Stop)
                 .NotEmpty()
+                .WithMessage("Password can't be empty")
                 .NotNull()
                 .WithMessage("Password can't be empty");
 

@@ -119,6 +119,9 @@ namespace Kanban.Service.Business.Data.Implementations
         {
             return await _unitOfWork.Users.ChangePasswordAsync(user, currentPassword, newPassword);
         }
-
+        public async Task<SignInResult> PasswordSignInAsync(User user, string password, bool isPersistent, bool lockoutOnFailure)
+        {
+            return await _unitOfWork.Users.PasswordSignInAsync(user, password, isPersistent, lockoutOnFailure);
+        }
     }
 }

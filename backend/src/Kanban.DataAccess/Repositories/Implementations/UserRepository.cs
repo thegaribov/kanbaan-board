@@ -119,5 +119,10 @@ namespace Kanban.DataAccess.Repositories.Implementations
         {
             return await _userManager.ChangePasswordAsync(user, currentPassword, newPassword);
         }
+
+        public async Task<SignInResult> PasswordSignInAsync(User user, string password, bool isPersistent, bool lockoutOnFailure)
+        {
+            return await _signInManager.PasswordSignInAsync(user, password, isPersistent, lockoutOnFailure);
+        }
     }
 }
