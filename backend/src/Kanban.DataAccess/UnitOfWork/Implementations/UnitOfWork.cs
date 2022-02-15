@@ -31,6 +31,7 @@ namespace Kanban.DataAccess.UnitOfWork.Implementations
             _context = context;
         }
 
+
         private IUserRepository user;
         public IUserRepository Users => user ??= new UserRepository(_context, _userManager, _signInManager, _roleManager);
 
@@ -45,6 +46,10 @@ namespace Kanban.DataAccess.UnitOfWork.Implementations
 
         private ITicketRepository ticket;
         public ITicketRepository Tickets => ticket ??= new TicketRepository(_context);
+
+
+        private IUserTicketOrganisationRepository userTicketOrganisation;
+        public IUserTicketOrganisationRepository UserTicketOrganisations => userTicketOrganisation ??= new UserTicketOrganisationRepository(_context);
 
 
         public async Task CommitAsync()
