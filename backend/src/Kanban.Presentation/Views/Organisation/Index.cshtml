@@ -66,14 +66,15 @@
                                         @*<span class="text-muted fw-bold">3</span>*@
                                     </a>
                                 </li>
-                                <li class="list-item d-inline-block">
-                                    <a class="" href="#">
-                                        <i class="mdi mdi-account-multiple-plus-outline text-primary font-30"></i>
-                                    </a>
-                                </li>
 
                                 @if(organisation.IsCurrentUserOwner)
                                 {
+                                    <li class="list-item d-inline-block">
+                                        <a asp-route="organisation-add-member" asp-route-organisationId="@organisation.Id">
+                                            <i class="mdi mdi-account-multiple-plus-outline text-primary font-30"></i>
+                                        </a>
+                                    </li>
+
                                     <li class="list-item d-inline-block">
                                         <a asp-route="organisation-edit" asp-route-id="@organisation.Id" class="ms-2" >
                                             <i class="mdi mdi-pencil-outline text-primary font-30"></i>

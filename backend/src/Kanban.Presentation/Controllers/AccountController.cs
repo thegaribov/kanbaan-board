@@ -8,9 +8,12 @@ using System.Threading.Tasks;
 
 namespace Kanban.Presentation.Controllers
 {
+
     [Route("[controller]")]
     public class AccountController : Controller
     {
+        #region ctor
+
         private readonly IUserService _userService;
         private readonly IOrganisationService _organisationService;
         private readonly IUserOrganisationService _userOrganisationService;
@@ -24,6 +27,8 @@ namespace Kanban.Presentation.Controllers
             _organisationService = organisationService;
             _userOrganisationService = userOrganisationService;
         }
+
+        #endregion
 
         #region Login
 
