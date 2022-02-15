@@ -34,11 +34,17 @@ namespace Kanban.DataAccess.UnitOfWork.Implementations
         private IUserRepository user;
         public IUserRepository Users => user ??= new UserRepository(_context, _userManager, _signInManager, _roleManager);
 
+
         private IOrganisationRepository organisation;
         public IOrganisationRepository Organisations => organisation ??= new OrganisationRepository(_context);
 
+
         private IUserOrganisationRepository userOrganisation;
         public IUserOrganisationRepository UserOrganisations => userOrganisation ??= new UserOrganisationRepository(_context);
+
+
+        private ITicketRepository ticket;
+        public ITicketRepository Tickets => ticket ??= new TicketRepository(_context);
 
 
         public async Task CommitAsync()
