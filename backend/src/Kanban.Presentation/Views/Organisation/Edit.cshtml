@@ -21,7 +21,7 @@
                     <li class="breadcrumb-item active">Edit</li>
                 </ol>
             </div>
-            <h4 class="page-title">Edit Orgnisation</h4>
+            <h4 class="page-title">Edit Organisation</h4>
         </div><!--end page-title-box-->
     </div><!--end col-->
 </div>
@@ -38,7 +38,8 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <form method="POST" enctype="multipart/form-data" asp-controller="organisaton" asp-action="edit" id="form-edit">
+                <form method="POST" enctype="multipart/form-data" asp-controller="organisaton-edit" id="form-edit">
+                    <input type="hidden" asp-for="Id" />
                     @Html.AntiForgeryToken()
 
                     <div class="row">
@@ -81,7 +82,7 @@
             <div class="card-body">
                 <div class="form-group mt-3">
                     <button class="btn btn-primary" type="submit" form="form-edit">Save</button>
-                    <a asp-controller="organisaton" asp-action="list" class="btn btn-danger">Cancel</a>
+                    <a asp-route="organisation-index" class="btn btn-danger">Cancel</a>
                 </div>
             </div>
         </div>

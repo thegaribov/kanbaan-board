@@ -85,6 +85,32 @@ namespace Kanban.Presentation.Controllers
             return View(model);
         }
 
+        [HttpPost("{id}/edit", Name = "organisation-edit")]
+        public async Task<IActionResult> Edit(OrganisationEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var currentUser = await _userService.GetUserAsync(User);
+
+                //Check whether organisation belongs to current user or not
+                var isOwner = await _userOrganisationService.IsOwnerAsync(currentUser.Id, model.Id);
+                if (!isOwner) return NotFound();
+
+                var organisation = await _organisationService.GetAsync(model.Id);
+
+                organisation.Name = model.Name;
+                organisation.Address = model.Address;
+                organisation.PhoneNumber = model.PhoneNumber;
+
+                await _organisationService.UpdateAsync(organisation);
+
+                return RedirectToRoute("organisation-index");
+            }
+
+
+            return View(model);
+        }
+
         #endregion
     }
 }
