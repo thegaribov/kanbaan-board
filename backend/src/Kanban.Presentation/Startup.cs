@@ -1,7 +1,14 @@
+using FluentValidation.AspNetCore;
+using Kanban.Core.Entities;
 using Kanban.DataAccess.Persistance.Contexts;
+using Kanban.DataAccess.UnitOfWork.Abstracts;
+using Kanban.DataAccess.UnitOfWork.Implementations;
+using Kanban.Service.Business.Data.Abstracts;
+using Kanban.Service.Business.Data.Implementations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -74,6 +81,61 @@ namespace Kanban.Presentation
                 );
             }
             );
+
+            #endregion
+
+            #region Routing configurations
+
+            //Lowercase Routing
+            services.AddRouting(options => options.LowercaseUrls = true);
+
+            #endregion
+
+            #region Identity
+
+            //Policy and Role changes will be effected immediately
+            services.Configure<SecurityStampValidatorOptions>(options =>
+            {
+                options.ValidationInterval = TimeSpan.Zero;
+            });
+
+            //Identity
+            services.AddIdentity<User, IdentityRole>(options =>
+            {
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 0;
+                options.User.RequireUniqueEmail = true;
+                //options.SignIn.RequireConfirmedEmail = true;
+            })
+              .AddRoles<IdentityRole>()
+              .AddEntityFrameworkStores<KanbanContext>()
+              .AddDefaultTokenProviders();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/account/login";
+                options.AccessDeniedPath = "/account/login";
+                options.ExpireTimeSpan = TimeSpan.FromHours(72);
+            });
+
+            #endregion
+
+            #region Services
+
+            //unitOfWork
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+            services.AddTransient<IUserService, UserService>();
+
+            #endregion
+
+
+            #region FluentValidation
+
+            services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
 
             #endregion
         }
