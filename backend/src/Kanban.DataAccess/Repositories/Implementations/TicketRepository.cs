@@ -25,12 +25,15 @@ namespace Kanban.DataAccess.Repositories.Implementations
         }
 
 
-        //public async Task<Dictionary<TicketStatus, List<Ticket>>> GetAllGroupedByOrganisation(int organisationId)
-        //{
-        //    return await _context.Tickets
-        //                .Where(t => t)
-        //                .GroupBy(t => t.Status)
-        //                .ToDictionaryAsync(t => t.Key, t => t.ToList());
-        //}
+        public async Task<Dictionary<TicketStatus, List<Ticket>>> GetAllGroupedByOrganisation(int organisationId)
+        {
+            return (await _context.Tickets
+                        .Where(t => t.OrganisationId == organisationId)
+                        .Include(t => t.UserTickets)
+                        .ThenInclude(ut => ut.User)
+                        .ToListAsync())
+                        .GroupBy(t => t.Status)
+                        .ToDictionary(t => t.Key, t => t.ToList());
+        }
     }
 }

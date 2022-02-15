@@ -15,8 +15,8 @@ namespace Kanban.Core.Enums.Ticket
         [Display(Name = "In progress")]
         InProgress = 2,
 
-        [Display(Name = "Completed")]
-        Completed = 3,
+        [Display(Name = "Testing")]
+        Testing = 3,
 
         [Display(Name = "Done")]
         Done = 4,

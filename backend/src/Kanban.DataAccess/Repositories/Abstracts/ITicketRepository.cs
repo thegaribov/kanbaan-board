@@ -1,4 +1,5 @@
 ﻿using Kanban.Core.Entities;
+using Kanban.Core.Enums.Ticket;
 using Kanban.DataAccess.Abstracts.Base;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -12,6 +13,6 @@ namespace Kanban.DataAccess.Repositories.Abstracts
 {
     public interface ITicketRepository : IBaseRepository<Ticket>
     {
-
+        Task<Dictionary<TicketStatus, List<Ticket>>> GetAllGroupedByOrganisation(int organisationId);
     }
 }

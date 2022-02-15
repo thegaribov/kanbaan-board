@@ -206,6 +206,8 @@ namespace Kanban.Presentation.Controllers
             if (!isTakePartIn) return NotFound();
 
             var organisation = await _organisationService.GetAsync(organisationId);
+            var groupedTickets = await _ticketService.GetAllGroupedByOrganisation(organisationId);
+
 
             //var model = new BoardViewModel
             //{

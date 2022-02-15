@@ -1,4 +1,5 @@
 ﻿using Kanban.Core.Entities;
+using Kanban.Core.Enums.Ticket;
 using Kanban.DataAccess.UnitOfWork.Abstracts;
 using Kanban.Service.Business.Data.Abstracts;
 using System;
@@ -15,6 +16,11 @@ namespace Kanban.Service.Business.Data.Implementations
         public TicketService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+        }
+
+        public async Task<Dictionary<TicketStatus, List<Ticket>>> GetAllGroupedByOrganisation(int organisationId)
+        {
+            return await _unitOfWork.Tickets.GetAllGroupedByOrganisation(organisationId);
         }
 
         public async Task<List<Ticket>> GetAllAsync()

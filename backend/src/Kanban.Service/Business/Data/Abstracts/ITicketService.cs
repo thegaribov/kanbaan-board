@@ -1,4 +1,5 @@
 ﻿using Kanban.Core.Entities;
+using Kanban.Core.Enums.Ticket;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,11 @@ namespace Kanban.Service.Business.Data.Abstracts
     public interface ITicketService
     {
         Task<List<Ticket>> GetAllAsync();
+        Task<Dictionary<TicketStatus, List<Ticket>>> GetAllGroupedByOrganisation(int organisationId);
         Task<Ticket> GetAsync(int id);
         Task CreateAsync(Ticket ticket);
         Task UpdateAsync(Ticket ticket);
         Task DeleteAsync(Ticket ticket);
+
     }
 }
