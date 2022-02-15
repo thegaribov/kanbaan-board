@@ -17,6 +17,9 @@ namespace Kanban.Core.Entities
         public DateTime Deadline { get; set; }
         public TicketStatus Status { get; set; }
 
+        public int OrganisationId { get; set; }
+        public Organisation Organisation { get; set; }
+
         #region Date logging
 
         public DateTime UpdatedAt { get; set; }
