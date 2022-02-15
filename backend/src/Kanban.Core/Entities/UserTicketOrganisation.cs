@@ -9,16 +9,13 @@ using System.Threading.Tasks;
 
 namespace Kanban.Core.Entities
 {
-    public class UserTicketOrganisation : IEntity, ICreatedAt, IUpdatedAt
+    public class UserTicket : IEntity, ICreatedAt, IUpdatedAt
     {
         public int TicketId { get; set; }
         public Ticket Ticket { get; set; }
 
         public string UserId { get; set; }
         public User User { get; set; }
-
-        public int OrganisationId { get; set; }
-        public Organisation Organisation { get; set; }
 
         #region Date logging
 

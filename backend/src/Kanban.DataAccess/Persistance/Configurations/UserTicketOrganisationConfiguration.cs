@@ -9,34 +9,29 @@ using System.Threading.Tasks;
 
 namespace Kanban.DataAccess.Persistance.Configurations
 {
-    public class UserTicketOrganisationConfiguration : IEntityTypeConfiguration<UserTicketOrganisation>
+    public class UserTicketConfiguration : IEntityTypeConfiguration<UserTicket>
     {
-        public void Configure(EntityTypeBuilder<UserTicketOrganisation> builder)
+        public void Configure(EntityTypeBuilder<UserTicket> builder)
         {
             #region PK
 
             builder.
-                HasKey(uto => new { uto.UserId, uto.OrganisationId, uto.TicketId });
+                HasKey(ut => new { ut.UserId, ut.TicketId });
 
             builder
-                .HasOne<User>(uto => uto.User)
-                .WithMany(u => u.UserTicketOrganisations)
-                .HasForeignKey(uto => uto.UserId);
+                .HasOne<User>(ut => ut.User)
+                .WithMany(u => u.UserTickets)
+                .HasForeignKey(ut => ut.UserId);
 
             builder
-               .HasOne<Organisation>(uto => uto.Organisation)
-               .WithMany(u => u.UserTicketOrganisations)
-               .HasForeignKey(uto => uto.OrganisationId);
-
-            builder
-               .HasOne<Ticket>(uto => uto.Ticket)
-               .WithMany(u => u.UserTicketOrganisations)
-               .HasForeignKey(uto => uto.TicketId);
+               .HasOne<Ticket>(ut => ut.Ticket)
+               .WithMany(u => u.UserTickets)
+               .HasForeignKey(ut => ut.TicketId);
 
             #endregion
 
             builder
-                .ToTable("UserTicketOrganisations");
+                .ToTable("UserTickets");
         }
     }
 }

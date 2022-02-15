@@ -27,6 +27,6 @@ namespace Kanban.Core.Entities
 
         #endregion
 
-        public IList<UserTicketOrganisation> UserTicketOrganisations { get; set; }
+        public ICollection<UserTicket> UserTickets { get; set; }
     }
 }

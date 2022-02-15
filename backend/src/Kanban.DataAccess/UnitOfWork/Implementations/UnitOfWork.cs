@@ -48,8 +48,8 @@ namespace Kanban.DataAccess.UnitOfWork.Implementations
         public ITicketRepository Tickets => ticket ??= new TicketRepository(_context);
 
 
-        private IUserTicketOrganisationRepository userTicketOrganisation;
-        public IUserTicketOrganisationRepository UserTicketOrganisations => userTicketOrganisation ??= new UserTicketOrganisationRepository(_context);
+        private IUserTicketRepository userTicket;
+        public IUserTicketRepository UserTickets => userTicket ??= new UserTicketRepository(_context);
 
 
         public async Task CommitAsync()
