@@ -12,6 +12,7 @@ namespace Kanban.DataAccess.UnitOfWork.Abstracts
     public interface IUnitOfWork
     {
         IUserRepository Users { get; }
+        IOrganisationRepository Organisations { get; }
 
         Task CommitAsync();
     }

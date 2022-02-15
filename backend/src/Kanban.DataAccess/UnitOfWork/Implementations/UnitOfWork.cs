@@ -34,6 +34,10 @@ namespace Kanban.DataAccess.UnitOfWork.Implementations
         private IUserRepository user;
         public IUserRepository Users => user ??= new UserRepository(_context, _userManager, _signInManager, _roleManager);
 
+        private IOrganisationRepository organisation;
+        public IOrganisationRepository Organisations => organisation ??= new OrganisationRepository(_context);
+
+
         public async Task CommitAsync()
         {
             await _context.SaveChangesAsync();
