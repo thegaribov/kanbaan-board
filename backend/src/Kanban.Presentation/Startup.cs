@@ -130,6 +130,7 @@ namespace Kanban.Presentation
 
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IOrganisationService, OrganisationService>();
+            services.AddTransient<IUserOrganisationService, UserOrganisationService>();
 
             #endregion
 

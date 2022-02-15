@@ -1,4 +1,5 @@
 ﻿using Kanban.Core.Entities;
+using Kanban.Core.Enums.Organisation;
 using Kanban.Core.Extensions.IdentityResult;
 using Kanban.Presentation.ViewModels.Account;
 using Kanban.Service.Business.Data.Abstracts;
@@ -11,11 +12,17 @@ namespace Kanban.Presentation.Controllers
     public class AccountController : Controller
     {
         private readonly IUserService _userService;
-        private readonly IOrganisationService _userService;
+        private readonly IOrganisationService _organisationService;
+        private readonly IUserOrganisationService _userOrganisationService;
 
-        public AccountController(IUserService userService)
+        public AccountController(
+            IUserService userService, 
+            IOrganisationService organisationService,
+            IUserOrganisationService userOrganisationService)
         {
             _userService = userService;
+            _organisationService = organisationService;
+            _userOrganisationService = userOrganisationService;
         }
 
         #region Login
@@ -103,23 +110,21 @@ namespace Kanban.Presentation.Controllers
                     Address = model.Address
                 };
 
-                //await 
+                await _organisationService.CreateAsync(newOrganisation);
 
-                //if (user != null)
-                //{
-                   
+                //Create pivot record
 
-                //    if (result.Succeeded)
-                //    {
-                //        if (string.IsNullOrEmpty(returnUrl))
-                //            return RedirectToAction("index", "home");
+                var organisationUser = new UserOrganisation
+                {
+                    OrganisationId = newOrganisation.Id,
+                    UserId = newUser.Id,
+                    Role = OrganisationRole.Admin
+                };
 
-                //        else if (Url.IsLocalUrl(returnUrl))
-                //            return LocalRedirect(returnUrl);
-                //    }
-                //}
+                await _userOrganisationService.CreateAsync(organisationUser);
 
-                ModelState.AddModelError(string.Empty, "Email or password is not correct.");
+
+                return RedirectToRoute("account-login");
             }
 
 

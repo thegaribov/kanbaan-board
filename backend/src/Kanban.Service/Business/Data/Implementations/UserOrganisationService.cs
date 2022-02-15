@@ -32,17 +32,20 @@ namespace Kanban.Service.Business.Data.Implementations
         public async Task CreateAsync(UserOrganisation userOrganisation)
         {
             await _unitOfWork.UserOrganisations.CreateAsync(userOrganisation);
+            await _unitOfWork.CommitAsync();
         }
 
       
         public async Task UpdateAsync(UserOrganisation userOrganisation)
         {
             await _unitOfWork.UserOrganisations.UpdateAsync(userOrganisation);
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task DeleteAsync(UserOrganisation userOrganisation)
         {
             await _unitOfWork.UserOrganisations.DeleteAsync(userOrganisation);
+            await _unitOfWork.CommitAsync();
         }
 
     }
