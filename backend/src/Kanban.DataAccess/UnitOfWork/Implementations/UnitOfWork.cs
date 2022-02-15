@@ -37,6 +37,9 @@ namespace Kanban.DataAccess.UnitOfWork.Implementations
         private IOrganisationRepository organisation;
         public IOrganisationRepository Organisations => organisation ??= new OrganisationRepository(_context);
 
+        private IUserOrganisationRepository userOrganisation;
+        public IUserOrganisationRepository UserOrganisations => userOrganisation ??= new UserOrganisationRepository(_context);
+
 
         public async Task CommitAsync()
         {
