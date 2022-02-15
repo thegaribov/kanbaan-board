@@ -188,8 +188,6 @@ namespace Kanban.Presentation.Controllers
             return View(model);
         }
 
-
-
         #endregion
 
         #region Board

@@ -3,15 +3,17 @@ using System;
 using Kanban.DataAccess.Persistance.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Kanban.DataAccess.Migrations
 {
     [DbContext(typeof(KanbanContext))]
-    partial class KanbanContextModelSnapshot : ModelSnapshot
+    [Migration("20220215182132_Ticket")]
+    partial class Ticket
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -178,32 +180,6 @@ namespace Kanban.DataAccess.Migrations
                     b.ToTable("UserOrganisations");
                 });
 
-            modelBuilder.Entity("Kanban.Core.Entities.UserTicketOrganisation", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("text");
-
-                    b.Property<int>("OrganisationId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("TicketId")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.HasKey("UserId", "OrganisationId", "TicketId");
-
-                    b.HasIndex("OrganisationId");
-
-                    b.HasIndex("TicketId");
-
-                    b.ToTable("UserTicketOrganisations");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -353,33 +329,6 @@ namespace Kanban.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Kanban.Core.Entities.UserTicketOrganisation", b =>
-                {
-                    b.HasOne("Kanban.Core.Entities.Organisation", "Organisation")
-                        .WithMany("UserTicketOrganisations")
-                        .HasForeignKey("OrganisationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Kanban.Core.Entities.Ticket", "Ticket")
-                        .WithMany("UserTicketOrganisations")
-                        .HasForeignKey("TicketId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Kanban.Core.Entities.User", "User")
-                        .WithMany("UserTicketOrganisations")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Organisation");
-
-                    b.Navigation("Ticket");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -434,20 +383,11 @@ namespace Kanban.DataAccess.Migrations
             modelBuilder.Entity("Kanban.Core.Entities.Organisation", b =>
                 {
                     b.Navigation("UserOrganisations");
-
-                    b.Navigation("UserTicketOrganisations");
-                });
-
-            modelBuilder.Entity("Kanban.Core.Entities.Ticket", b =>
-                {
-                    b.Navigation("UserTicketOrganisations");
                 });
 
             modelBuilder.Entity("Kanban.Core.Entities.User", b =>
                 {
                     b.Navigation("UserOrganisations");
-
-                    b.Navigation("UserTicketOrganisations");
                 });
 #pragma warning restore 612, 618
         }

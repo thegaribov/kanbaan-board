@@ -9,36 +9,44 @@ using System.Threading.Tasks;
 
 namespace Kanban.DataAccess.Persistance.Configurations
 {
-    public class OrganisationConfiguration : IEntityTypeConfiguration<Organisation>
+    public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
     {
-        public void Configure(EntityTypeBuilder<Organisation> builder)
+        public void Configure(EntityTypeBuilder<Ticket> builder)
         {
-            #region Name
+            #region Title
 
             builder
-              .Property(o => o.Name)
+              .Property(t => t.Title)
               .IsRequired(true);
 
             #endregion
 
-            #region PhoneNumber
+            #region Description
 
             builder
-              .Property(o => o.PhoneNumber)
+              .Property(t => t.Description)
               .IsRequired(true);
 
             #endregion
 
-            #region Address
+            #region Deadline
 
             builder
-              .Property(o => o.Address)
+              .Property(t => t.Deadline)
+              .IsRequired(true);
+
+            #endregion
+
+            #region Status
+
+            builder
+              .Property(t => t.Status)
               .IsRequired(true);
 
             #endregion
 
             builder
-                .ToTable("Organisations");
+                .ToTable("Tickets");
         }
     }
 }

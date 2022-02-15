@@ -1,4 +1,5 @@
 ﻿using Kanban.Core.Entities.Common;
+using Kanban.Core.Enums.Ticket;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -8,9 +9,13 @@ using System.Threading.Tasks;
 
 namespace Kanban.Core.Entities
 {
-    public class User : IdentityUser, IEntity, ICreatedAt, IUpdatedAt
+    public class Ticket : IEntity, ICreatedAt, IUpdatedAt
     {
-        public string FullName { get; set; }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public DateTime Deadline { get; set; }
+        public TicketStatus Status { get; set; }
 
         #region Date logging
 
@@ -19,7 +24,6 @@ namespace Kanban.Core.Entities
 
         #endregion
 
-        public IList<UserOrganisation> UserOrganisations { get; set; }
         public IList<UserTicketOrganisation> UserTicketOrganisations { get; set; }
     }
 }
