@@ -20,6 +20,7 @@ namespace Kanban.DataAccess.Persistance.Contexts
         public DbSet<UserOrganisation> UserOrganisations { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<UserTicket> UserTickets { get; set; }
+        public DbSet<NotifyEvent> NotifyEvents { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
