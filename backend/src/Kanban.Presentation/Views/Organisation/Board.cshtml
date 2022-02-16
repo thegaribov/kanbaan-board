@@ -63,7 +63,7 @@
                                                         <i class="las la-ellipsis-v font-14 text-muted"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="drop2">
-                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                        <a asp-route="ticket-edit" asp-route-organisationId="@Model.OrganisationId" asp-route-ticketId="@ticket.Id" class="dropdown-item">Edit</a>
                                                         <a asp-route="ticket-delete" asp-route-organisationId="@Model.OrganisationId" asp-route-ticketId="@ticket.Id" class="dropdown-item" >Delete</a>
                                                     </div>
                                                 </div>
@@ -84,7 +84,7 @@
                                                         @foreach (var userTicket in ticket.UserTickets)
                                                         {
                                                             <a class="float-end" href="#" title="@userTicket.User.FullName">
-                                                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUepaBdMZtoy5GmiKF_v1vkRbwo3MgxAiIwcaztDaqiYwLdV58jhq19hUX00btfdkBUF8&amp;usqp=CAU" alt="user" class="thumb-xs rounded-circle">
+                                                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUepaBdMZtoy5GmiKF_v1vkRbwo3MgxAiIwcaztDaqiYwLdV58jhq19hUX00btfdkBUF8&amp;usqp=CAU" asp-append-version="true" alt="user" class="thumb-xs rounded-circle">
                                                             </a>
                                                         }
                                                     </div>

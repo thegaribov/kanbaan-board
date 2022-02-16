@@ -28,6 +28,14 @@ namespace Kanban.DataAccess.Repositories.Implementations
             return await _context.UserTickets.ToListAsync();
         }
 
+        public async Task<List<string>> GetAllUsersIdsByTicketIdAsync(int ticketId)
+        {
+            return await _context.UserTickets
+                .Where(ut => ut.TicketId == ticketId)
+                .Select(ut => ut.User.Id)
+                .ToListAsync();
+        }
+
         public async Task<UserTicket> GetAsync(string userId, int ticketId)
         {
             return await _context.UserTickets

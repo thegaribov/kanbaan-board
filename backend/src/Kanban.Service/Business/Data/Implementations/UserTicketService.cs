@@ -24,6 +24,11 @@ namespace Kanban.Service.Business.Data.Implementations
             return await _unitOfWork.UserTickets.GetAllAsync();
         }
 
+        public async Task<List<string>> GetAllUsersIdsByTicketIdAsync(int ticketId)
+        {
+            return await _unitOfWork.UserTickets.GetAllUsersIdsByTicketIdAsync(ticketId);
+        }
+
         public async Task<UserTicket> GetAsync(string userId, int ticketId)
         {
             return await _unitOfWork.UserTickets.GetAsync(userId, ticketId);

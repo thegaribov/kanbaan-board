@@ -15,5 +15,6 @@ namespace Kanban.DataAccess.Repositories.Abstracts
     {
         Task<Dictionary<TicketStatus, List<Ticket>>> GetAllGroupedByOrganisation(int organisationId);
         Task<Ticket> GetByOrganisation(int ticketId, int organisationId);
+        Task<Ticket> GetWithOrganisationByOrganisation(int ticketId, int organisationId);
     }
 }

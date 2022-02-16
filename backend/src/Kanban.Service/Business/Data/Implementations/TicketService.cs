@@ -23,6 +23,11 @@ namespace Kanban.Service.Business.Data.Implementations
             return await _unitOfWork.Tickets.GetByOrganisation(ticketId, organisationId);
         }
 
+        public async Task<Ticket> GetWithOrganisationByOrganisation(int ticketId, int organisationId)
+        {
+            return await _unitOfWork.Tickets.GetWithOrganisationByOrganisation(ticketId, organisationId);
+        }
+
         public async Task<Dictionary<TicketStatus, List<Ticket>>> GetAllGroupedByOrganisation(int organisationId)
         {
             return await _unitOfWork.Tickets.GetAllGroupedByOrganisation(organisationId);

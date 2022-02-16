@@ -29,6 +29,13 @@ namespace Kanban.DataAccess.Repositories.Implementations
             return await _context.Tickets.FirstOrDefaultAsync(t => t.Id == ticketId && t.OrganisationId == organisationId);
         }
 
+        public async Task<Ticket> GetWithOrganisationByOrganisation(int ticketId, int organisationId)
+        {
+            return await _context.Tickets
+                .Include(t => t.Organisation)
+                .FirstOrDefaultAsync(t => t.Id == ticketId && t.OrganisationId == organisationId);
+        }
+
         public async Task<Dictionary<TicketStatus, List<Ticket>>> GetAllGroupedByOrganisation(int organisationId)
         {
             return (await _context.Tickets

@@ -12,6 +12,7 @@ namespace Kanban.Service.Business.Data.Abstracts
     public interface IUserTicketService
     {
         Task<List<UserTicket>> GetAllAsync();
+        Task<List<string>> GetAllUsersIdsByTicketIdAsync(int ticketId);
         Task<UserTicket> GetAsync(string userId, int ticketId);
         Task CreateAsync(UserTicket userTicket);
         Task UpdateAsync(UserTicket userTicket);

@@ -16,6 +16,7 @@ namespace Kanban.Service.Business.Data.Abstracts
         Task<Dictionary<TicketStatus, List<Ticket>>> GetAllGroupedByOrganisation(int organisationId);
         Task<Ticket> GetAsync(int id);
         Task<Ticket> GetByOrganisation(int ticketId, int organisationId);
+        Task<Ticket> GetWithOrganisationByOrganisation(int ticketId, int organisationId);
         Task CreateAsync(Ticket ticket);
         Task UpdateAsync(Ticket ticket);
         Task DeleteAsync(Ticket ticket);

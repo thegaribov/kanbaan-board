@@ -14,6 +14,7 @@ namespace Kanban.DataAccess.Repositories.Abstracts
     {
         Task<List<UserOrganisation>> GetAllAsync();
         Task<List<User>> GetAllUsersByOrganisationIdAsync(int organisationId);
+        Task<List<string>> GetAllUsersIdsByOrganisationIdAsync(int organisationId);
         Task<List<UserOrganisation>> GetAllWithUserAndOrganisationByUserAsync(string userId);
         Task<User> GetOrganisationOwnerByOrganisationAsync(int organisationId);
         Task<List<string>> GetOrganisationMembersFullNameAsync(int organisationId);
