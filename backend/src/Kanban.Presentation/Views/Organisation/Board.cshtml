@@ -93,7 +93,7 @@
                                                         <div class="col-6 align-self-center">
                                                             @foreach (var userTicket in ticket.UserTickets)
                                                             {
-                                                                <a class="float-end" href="#" title="@userTicket.User.FullName">
+                                                                <a class="float-end" href="#" data-bs-toggle="tooltip" data-bs-placement="bottom" title="@userTicket.User.FullName">
                                                                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUepaBdMZtoy5GmiKF_v1vkRbwo3MgxAiIwcaztDaqiYwLdV58jhq19hUX00btfdkBUF8&amp;usqp=CAU" asp-append-version="true" alt="user" class="thumb-xs rounded-circle">
                                                                 </a>
                                                             }

@@ -57,7 +57,7 @@
                             <div class="img-group">
                                 @foreach (var userName in organisation.Members)
                                 {
-                                    <a class="user-avatar" title="@userName">
+                                    <a class="user-avatar" data-bs-toggle="tooltip" data-bs-placement="bottom" title="@userName">
                                         <img src="https://img.favpng.com/13/14/23/computer-icons-user-vector-graphics-portable-network-graphics-psd-png-favpng-sXybdut2iBZYirt6eHqEhE2LN.jpg" alt="user" class="thumb-xs rounded-circle">
                                     </a>
                                 }
@@ -95,3 +95,9 @@
     }
 
 </div><!--end row-->
+
+
+@section scripts{
+
+     
+}
