@@ -22,7 +22,7 @@ namespace Kanban.Service.Business.Data.Implementations
     {
         #region Business send methods
 
-        public async Task<NotificationResult> SendTaskAssignedAsync(User toUser, Ticket assignedTicket)
+        public async Task<NotificationResult> SendTicketAssignedAsync(User toUser, Ticket assignedTicket)
         {
             var notification = await CreateAndGetAsync(toUser, assignedTicket, NotifyIdentifier.TicketAssignedToUser);
             var sendResult = await SendByIdAsync(notification.Id);
@@ -32,7 +32,7 @@ namespace Kanban.Service.Business.Data.Implementations
             return sendResult;
         }
 
-        public void SendTaskAssignedInBackground(User toUser, Ticket assignedTicket)
+        public void SendTicketAssignedInBackground(User toUser, Ticket assignedTicket)
         {
             _backgroundTaskQueue.EnqueueTask(async (serviceScopeFactory, cancellationToken) =>
             {
@@ -43,7 +43,7 @@ namespace Kanban.Service.Business.Data.Implementations
 
                 try
                 {
-                    await notificationService.SendTaskAssignedAsync(toUser, assignedTicket);
+                    await notificationService.SendTicketAssignedAsync(toUser, assignedTicket);
 
                     logger.LogInformation($"[BT] [NotificationService] [{DateTime.UtcNow.ToString("dd/MM/yyy HH:mm:ss")}] Send task assigned notification completed successfully.");
                 }

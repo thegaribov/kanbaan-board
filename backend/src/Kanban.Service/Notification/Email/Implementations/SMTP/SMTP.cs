@@ -29,10 +29,10 @@ namespace Kanban.Service.Notification.Email.Implementations.SMTP
             IBackgroundTaskQueue backgroundTaskQueue)
 
         {
-            _senderEmail = Environment.GetEnvironmentVariable("SMTP_SENDER_EMAIL");
-            _senderEmailPassword = Environment.GetEnvironmentVariable("SMTP_SENDER_EMAIL_PASSWORD");
-            _senderHost = Environment.GetEnvironmentVariable("SMTP_SENDER_HOST");
-            _port = int.Parse(Environment.GetEnvironmentVariable("SMTP_PORT"));
+            _senderEmail = /*Environment.GetEnvironmentVariable("SMTP_SENDER_EMAIL");*/ "maho.learn.c.sharp@gmail.com";
+            _senderEmailPassword = /*Environment.GetEnvironmentVariable("SMTP_SENDER_EMAIL_PASSWORD");*/ "smtp.gmail.com";
+            _senderHost = /*Environment.GetEnvironmentVariable("SMTP_SENDER_HOST");*/ "smtp.gmail.com";
+            _port = /*int.Parse(Environment.GetEnvironmentVariable("SMTP_PORT"));*/ 465;
 
             _logger = logger;
             _backgroundTaskQueue = backgroundTaskQueue;

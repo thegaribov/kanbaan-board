@@ -6,6 +6,7 @@ using Kanban.Presentation.ViewModels.Ticket;
 using Kanban.Service.Business.Data.Abstracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,19 +23,23 @@ namespace Kanban.Presentation.Controllers
         private readonly IUserOrganisationService _userOrganisationService;
         private readonly ITicketService _ticketService;
         private readonly IUserTicketService _userTicketService;
+        private readonly INotificationService _notificationService;
+
 
         public TicketController(
             IUserService userService,
             IOrganisationService organisationService,
             IUserOrganisationService userOrganisationService,
             ITicketService ticketService,
-            IUserTicketService userTicketService)
+            IUserTicketService userTicketService,
+            INotificationService notificationService)
         {
             _userService = userService;
             _organisationService = organisationService;
             _userOrganisationService = userOrganisationService;
             _ticketService = ticketService;
             _userTicketService = userTicketService;
+            _notificationService = notificationService;
         }
 
         #endregion
@@ -98,6 +103,9 @@ namespace Kanban.Presentation.Controllers
                         };
 
                         await _userTicketService.CreateAsync(userTicket);
+
+                        //Send assigned task notification
+                        _notificationService.SendTicketAssignedInBackground(user, newTicket);
                     }
                 }
 
@@ -123,6 +131,7 @@ namespace Kanban.Presentation.Controllers
 
             //Check tickets exist or not
             var ticket = await _ticketService.GetWithOrganisationByOrganisation(ticketId, organisationId);
+            if (ticket == null) return NotFound();
 
             var model = new TicketEditViewModel
             {
@@ -154,6 +163,7 @@ namespace Kanban.Presentation.Controllers
 
                 //Check tickets exist or not
                 var ticket = await _ticketService.GetByOrganisation(model.TicketId, model.OrganisationId);
+                if (ticket == null) return NotFound();
 
                 ticket.Title = model.Title;
                 ticket.Description = model.Description;
@@ -206,6 +216,7 @@ namespace Kanban.Presentation.Controllers
 
             //Check tickets exist or not
             var ticket = await _ticketService.GetByOrganisation(ticketId, organisationId);
+            if (ticket == null) return NotFound();
 
             await _ticketService.DeleteAsync(ticket);
 

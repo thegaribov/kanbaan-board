@@ -13,8 +13,8 @@ namespace Kanban.Service.Business.Data.Abstracts
     {
         #region Business send methods
 
-        Task<NotificationResult> SendTaskAssignedAsync(User toUser, Ticket assignedTicket);
-        void SendTaskAssignedInBackground(User toUser, Ticket assignedTicket);
+        Task<NotificationResult> SendTicketAssignedAsync(User toUser, Ticket assignedTicket);
+        void SendTicketAssignedInBackground(User toUser, Ticket assignedTicket);
 
         #endregion
 
