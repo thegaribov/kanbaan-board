@@ -29,5 +29,7 @@ namespace Kanban.Core.Entities
         public DateTime UpdatedAt { get; set; }
 
         #endregion
+
+        public ICollection<Notification> Notifications { get; set; }
     }
 }
