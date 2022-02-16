@@ -1,11 +1,13 @@
 ﻿using Kanban.Core.Entities;
 using Kanban.Core.Enums.Organisation;
+using Kanban.Core.Enums.Ticket;
 using Kanban.Core.Extensions.IdentityResult;
 using Kanban.Presentation.ViewModels.Organisation;
 using Kanban.Presentation.ViewModels.Ticket;
 using Kanban.Service.Business.Data.Abstracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -47,7 +49,7 @@ namespace Kanban.Presentation.Controllers
         #region Create
 
         [HttpGet("{organisationId}/create", Name = "ticket-create")]
-        public async Task<IActionResult> Create(int organisationId)
+        public async Task<IActionResult> Create(int organisationId, string status)
         {
             var currentUser = await _userService.GetUserAsync(User);
 
@@ -57,11 +59,14 @@ namespace Kanban.Presentation.Controllers
 
             var organisation = await _organisationService.GetAsync(organisationId);
 
+            Enum.TryParse(status, out TicketStatus providedStatus);
+
             var model = new TicketCreateViewModel
             {
                 OrganisationId = organisation.Id,
                 OrganisationName = organisation.Name,
-                Users = await _userOrganisationService.GetAllUsersByOrganisationIdAsync(organisationId)
+                Users = await _userOrganisationService.GetAllUsersByOrganisationIdAsync(organisationId),
+                Status = providedStatus
             };
 
             return View(model);

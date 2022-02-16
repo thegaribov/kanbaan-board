@@ -213,7 +213,8 @@ namespace Kanban.Presentation.Controllers
             {
                 OrganisationName = organisation.Name,
                 OrganisationId = organisation.Id,
-                GroupedTickets = await _ticketService.GetAllGroupedByOrganisation(organisationId)
+                GroupedTickets = await _ticketService.GetAllGroupedByOrganisation(organisationId),
+                IsCurrentUserOwner = await _userOrganisationService.IsOwnerAsync(currentUser.Id, organisationId)
             };
 
             return View(model);
