@@ -113,6 +113,8 @@ namespace Kanban.Presentation.Controllers
                 return RedirectToRoute("organisation-board", new { organisationId = model.OrganisationId });
             }
 
+            model.Users = await _userOrganisationService.GetAllUsersByOrganisationIdAsync(model.OrganisationId);
+
             return View(model);
         }
 
@@ -191,12 +193,18 @@ namespace Kanban.Presentation.Controllers
                         };
 
                         await _userTicketService.CreateAsync(userTicket);
+
+                        //Send assigned task notification
+                        _notificationService.SendTicketAssignedInBackground(user, ticket);
                     }
                 }
 
 
                 return RedirectToRoute("organisation-board", new { organisationId = model.OrganisationId });
             }
+
+            model.UsersIds = await _userTicketService.GetAllUsersIdsByTicketIdAsync(model.TicketId);
+            model.Users = await _userOrganisationService.GetAllUsersByOrganisationIdAsync(model.OrganisationId);
 
             return View(model);
         }
