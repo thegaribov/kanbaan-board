@@ -19,7 +19,7 @@ namespace Kanban.Service.Business.Data.Abstracts
         Task<bool> IsOwnerAsync(string userId, int organisationId);
         Task<bool> IsTakePartInAsync(string userId, int organisationId);
         Task<User> GetOrganisationOwnerByOrganisationAsync(int organisationId);
-        Task<List<string>> GetOrganisationMembersFullNameAsync(int organisationId);
+        Task<List<User>> GetOrganisationMembersAsync(int organisationId);
         Task CreateAsync(UserOrganisation userOrganisation);
         Task UpdateAsync(UserOrganisation userOrganisation);
         Task DeleteAsync(UserOrganisation userOrganisation);

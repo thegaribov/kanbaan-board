@@ -1,0 +1,62 @@
+﻿@using Kanban.Core.Entities
+@using Kanban.Presentation.ViewModels.Organisation
+
+@model VisitProfileViewModel
+
+@{
+    ViewData["Title"] = "Visit profile";
+}
+
+<!-- Page-Title -->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="page-title-box">
+            <div class="float-end">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-route="organisation-index">Organisation</a></li>
+                    <li class="breadcrumb-item"><a asp-route="organisation-board" asp-route-organisationId="@Model.Organisation.Id">Ticket board</a></li>
+                    <li class="breadcrumb-item active">Profile</li>
+                </ol>
+            </div>
+            <h4 class="page-title">Profile</h4>
+        </div>
+        <!--end page-title-box-->
+    </div>
+    <!--end col-->
+</div>
+<!-- end page title end breadcrumb -->
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="met-profile">
+                    <div class="row">
+                        <div class="col-lg-4 align-self-center mb-3 mb-lg-0">
+                            <div class="met-profile-main">
+                                <div class="met-profile-main-pic">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUepaBdMZtoy5GmiKF_v1vkRbwo3MgxAiIwcaztDaqiYwLdV58jhq19hUX00btfdkBUF8&amp;usqp=CAUS" alt="" height="110" class="rounded-circle" asp-append-version="true" >
+                                </div>
+                                <div class="met-profile_user-detail">
+                                    <h5 class="met-user-name">
+                                        @Model.User.FullName
+                                    </h5>
+                                </div>
+                            </div>
+                        </div><!--end col-->
+
+                        <div class="col-lg-4 ms-auto align-self-center">
+                            <ul class="list-unstyled personal-detail mb-0">
+                                <li class="mt-2"><i class="las la-envelope text-secondary font-22 align-middle mr-2"></i> <b> Email </b> : @Model.User.Email</li>
+                            </ul>
+
+                        </div><!--end col-->
+                    </div><!--end row-->
+                </div><!--end f_profile-->
+            </div><!--end card-body-->
+
+
+        </div><!--end card-->
+    </div><!--end col-->
+</div><!--end row-->

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kanban.Core.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace Kanban.Presentation.ViewModels.Organisation
@@ -16,7 +17,7 @@ namespace Kanban.Presentation.ViewModels.Organisation
         public string PhoneNumber { get; set; }
         public DateTime? CreatedAt { get; set; }
         public string Address { get; set; }
-        public List<string> Members { get; set; }
+        public List<User> Members { get; set; }
         public bool IsCurrentUserOwner { get; set; }
     }
 }

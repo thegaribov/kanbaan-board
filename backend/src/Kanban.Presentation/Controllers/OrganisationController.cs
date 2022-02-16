@@ -55,9 +55,7 @@ namespace Kanban.Presentation.Controllers
             foreach (var userOrganisation in userOrganisations)
             {
                 var owner = await _userOrganisationService.GetOrganisationOwnerByOrganisationAsync(userOrganisation.OrganisationId);
-                var members = await _userOrganisationService.GetOrganisationMembersFullNameAsync(userOrganisation.OrganisationId);
-
-
+                var members = await _userOrganisationService.GetOrganisationMembersAsync(userOrganisation.OrganisationId);
 
                 model.Organisations.Add(new OrganisationViewModel
                 {
@@ -227,6 +225,30 @@ namespace Kanban.Presentation.Controllers
                 OrganisationId = organisation.Id,
                 GroupedTickets = await _ticketService.GetAllGroupedByOrganisation(organisationId),
                 IsCurrentUserOwner = await _userOrganisationService.IsOwnerAsync(currentUser.Id, organisationId)
+            };
+
+            return View(model);
+        }
+
+        #endregion 
+
+        #region VisitProfile
+
+        [HttpGet("{organisationId}/visitProfile/{userId}", Name = "organisation-visitprofile")]
+        public async Task<IActionResult> VisitProfile(int organisationId, string userId)
+        {
+            var currentUser = await _userService.GetUserAsync(User);
+            var targetUser = await _userService.FindByIdAsync(userId);
+            var organisation = await _organisationService.GetAsync(organisationId);
+
+
+            //Check whether current user and target user in the same organisation or not
+
+
+            var model = new VisitProfileViewModel
+            {
+                User = targetUser,
+                Organisation = organisation,
             };
 
             return View(model);

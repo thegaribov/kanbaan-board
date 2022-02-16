@@ -55,16 +55,16 @@
                     <div class="mt-3">
                         <div class="d-flex justify-content-between">
                             <div class="img-group">
-                                @foreach (var userName in organisation.Members)
+                                @foreach (var member in organisation.Members)
                                 {
-                                    <a class="user-avatar" data-bs-toggle="tooltip" data-bs-placement="bottom" title="@userName">
+                                    <a asp-route="organisation-visitprofile" asp-route-organisationId="@organisation.Id" asp-route-userId="@member.Id" class="user-avatar" data-bs-toggle="tooltip" data-bs-placement="bottom" title="@member.FullName">
                                         <img src="https://img.favpng.com/13/14/23/computer-icons-user-vector-graphics-portable-network-graphics-psd-png-favpng-sXybdut2iBZYirt6eHqEhE2LN.jpg" alt="user" class="thumb-xs rounded-circle">
                                     </a>
                                 }
                             </div><!--end img-group-->
                             <ul class="list-inline mb-0 align-self-center">
                                 <li class="list-item d-inline-block">
-                                    <a asp-route="organisation-board" asp-route-organisationId="@organisation.Id" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Organisation board">
+                                    <a asp-route="organisation-board" asp-route-organisationId="@organisation.Id" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ticket board">
                                         <i class="mdi mdi-clipboard-account-outline text-primary font-30"></i>
                                         @*<span class="text-muted fw-bold">3</span>*@
                                     </a>

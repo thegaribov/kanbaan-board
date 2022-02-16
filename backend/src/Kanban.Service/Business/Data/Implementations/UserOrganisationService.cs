@@ -59,9 +59,9 @@ namespace Kanban.Service.Business.Data.Implementations
             return await _unitOfWork.UserOrganisations.GetOrganisationOwnerByOrganisationAsync(organisationId);
         }
 
-        public async Task<List<string>> GetOrganisationMembersFullNameAsync(int organisationId)
+        public async Task<List<User>> GetOrganisationMembersAsync(int organisationId)
         {
-            return await _unitOfWork.UserOrganisations.GetOrganisationMembersFullNameAsync(organisationId);
+            return await _unitOfWork.UserOrganisations.GetOrganisationMembersAsync(organisationId);
         }
 
         public async Task CreateAsync(UserOrganisation userOrganisation)

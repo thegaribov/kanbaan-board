@@ -80,12 +80,12 @@ namespace Kanban.DataAccess.Repositories.Implementations
                 .User;
         }
 
-        public async Task<List<string>> GetOrganisationMembersFullNameAsync(int organisationId)
+        public async Task<List<User>> GetOrganisationMembersAsync(int organisationId)
         {
             return await _context.UserOrganisations
                         .Include(uo => uo.User)
-                        .Where(uo => uo.OrganisationId == organisationId)
-                        .Select(uo => uo.User.FullName)
+                        .Where(uo => uo.OrganisationId == organisationId && uo.Role == OrganisationRole.Member)
+                        .Select(uo => uo.User)
                         .ToListAsync();
         }
 
