@@ -5,6 +5,8 @@ using Kanban.DataAccess.UnitOfWork.Abstracts;
 using Kanban.DataAccess.UnitOfWork.Implementations;
 using Kanban.Service.Business.Data.Abstracts;
 using Kanban.Service.Business.Data.Implementations;
+using Kanban.Service.Infrastructure.BackgroundTask.BackgroundTaskQueue.Abstracts;
+using Kanban.Service.Infrastructure.BackgroundTask.BackgroundTaskQueue.Implementations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -128,6 +130,10 @@ namespace Kanban.Presentation
 
             //unitOfWork
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+            //Background tasks
+            services.AddSingleton<IBackgroundTaskQueue, BackgroundTaskQueue>();
+            services.AddHostedService<BackgroundQueueHostedService>();
 
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IOrganisationService, OrganisationService>();
