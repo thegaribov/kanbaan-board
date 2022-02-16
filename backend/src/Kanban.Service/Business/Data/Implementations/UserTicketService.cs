@@ -24,6 +24,11 @@ namespace Kanban.Service.Business.Data.Implementations
             return await _unitOfWork.UserTickets.GetAllAsync();
         }
 
+        public async Task<List<UserTicket>> GetAllByTicketAsync(int ticketId)
+        {
+            return await _unitOfWork.UserTickets.GetAllByTicketAsync(ticketId);
+        }
+
         public async Task<List<string>> GetAllUsersIdsByTicketIdAsync(int ticketId)
         {
             return await _unitOfWork.UserTickets.GetAllUsersIdsByTicketIdAsync(ticketId);
@@ -51,6 +56,18 @@ namespace Kanban.Service.Business.Data.Implementations
         public async Task DeleteAsync(UserTicket userTicketOrganisation)
         {
             await _unitOfWork.UserTickets.DeleteAsync(userTicketOrganisation);
+            await _unitOfWork.CommitAsync();
+        }
+
+        public async Task DeleteRangeAsync(List<UserTicket> userTickets)
+        {
+            await _unitOfWork.UserTickets.DeleteRangeAsync(userTickets);
+            await _unitOfWork.CommitAsync();
+        }
+
+        public async Task DeleteRangeByTicketAsync(int ticketId)
+        {
+            await _unitOfWork.UserTickets.DeleteRangeByTicketAsync(ticketId);
             await _unitOfWork.CommitAsync();
         }
 

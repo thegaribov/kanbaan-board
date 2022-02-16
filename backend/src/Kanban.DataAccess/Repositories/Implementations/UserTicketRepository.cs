@@ -28,6 +28,13 @@ namespace Kanban.DataAccess.Repositories.Implementations
             return await _context.UserTickets.ToListAsync();
         }
 
+        public async Task<List<UserTicket>> GetAllByTicketAsync(int ticketId)
+        {
+            return await _context.UserTickets
+                            .Where(t => t.TicketId == ticketId)
+                            .ToListAsync();
+        }
+
         public async Task<List<string>> GetAllUsersIdsByTicketIdAsync(int ticketId)
         {
             return await _context.UserTickets
@@ -50,6 +57,18 @@ namespace Kanban.DataAccess.Repositories.Implementations
         public async Task DeleteAsync(UserTicket userOrganisation)
         {
             _context.Remove(userOrganisation);
+        }
+
+        public async Task DeleteRangeAsync(List<UserTicket> userTickets)
+        {
+            _context.RemoveRange(userTickets);
+        }
+
+        public async Task DeleteRangeByTicketAsync(int ticketId)
+        {
+            var userTickets = await GetAllByTicketAsync(ticketId);
+
+            await DeleteRangeAsync(userTickets);
         }
 
         public async Task UpdateAsync(UserTicket userOrganisation)

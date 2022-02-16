@@ -48,6 +48,15 @@ namespace Kanban.Presentation.ViewModels.Ticket
 
         private void IntegrateRules()
         {
+            #region TicketId
+
+            RuleFor(model => model.TicketId)
+                .Cascade(CascadeMode.Stop)
+                .NotEmpty()
+                .NotNull();
+
+            #endregion
+
             #region OrganisationId
 
             RuleFor(model => model.OrganisationId)

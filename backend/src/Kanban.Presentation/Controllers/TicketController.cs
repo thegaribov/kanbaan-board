@@ -141,51 +141,55 @@ namespace Kanban.Presentation.Controllers
             return View(model);
         }
 
-        //[HttpPost("{organisationId}/edit", Name = "ticket-edit")]
-        //public async Task<IActionResult> Edit(TicketEditViewModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var currentUser = await _userService.GetUserAsync(User);
+        [HttpPost("{organisationId}/edit/{ticketId}", Name = "ticket-edit")]
+        public async Task<IActionResult> Edit(TicketEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var currentUser = await _userService.GetUserAsync(User);
 
-        //        //Check whether organisation belongs to current user or not
-        //        var isOwner = await _userOrganisationService.IsOwnerAsync(currentUser.Id, model.OrganisationId);
-        //        if (!isOwner) return NotFound();
+                //Check whether organisation belongs to current user or not
+                var isOwner = await _userOrganisationService.IsOwnerAsync(currentUser.Id, model.OrganisationId);
+                if (!isOwner) return NotFound();
 
-        //        var newTicket = new Ticket
-        //        {
-        //            Title = model.Title,
-        //            Description = model.Description,
-        //            Deadline = model.Deadline,
-        //            OrganisationId = model.OrganisationId,
-        //            Status = model.Status,
-        //        };
+                //Check tickets exist or not
+                var ticket = await _ticketService.GetByOrganisation(model.TicketId, model.OrganisationId);
 
-        //        await _ticketService.CreateAsync(newTicket);
+                ticket.Title = model.Title;
+                ticket.Description = model.Description;
+                ticket.Deadline = model.Deadline;
+                ticket.Status = model.Status;
 
-        //        //Add selected user to ticket
-        //        foreach (var userId in model.UsersIds)
-        //        {
-        //            var user = await _userService.FindByIdAsync(userId);
+                await _ticketService.UpdateAsync(ticket);
 
-        //            if (user != null)
-        //            {
-        //                var userTicket = new UserTicket
-        //                {
-        //                    UserId = user.Id,
-        //                    TicketId = newTicket.Id
-        //                };
+                // ===== Add selected user to ticket
 
-        //                await _userTicketService.CreateAsync(userTicket);
-        //            }
-        //        }
+                //1. Remove all related user-ticket records
+                await _userTicketService.DeleteRangeByTicketAsync(ticket.Id);
+
+                //2. Add selected users
+                foreach (var userId in model.UsersIds)
+                {
+                    var user = await _userService.FindByIdAsync(userId);
+
+                    if (user != null)
+                    {
+                        var userTicket = new UserTicket
+                        {
+                            UserId = user.Id,
+                            TicketId = ticket.Id
+                        };
+
+                        await _userTicketService.CreateAsync(userTicket);
+                    }
+                }
 
 
-        //        return RedirectToRoute("organisation-board", new { organisationId = model.OrganisationId });
-        //    }
+                return RedirectToRoute("organisation-board", new { organisationId = model.OrganisationId });
+            }
 
-        //    return View(model);
-        //}
+            return View(model);
+        }
 
         #endregion
 
