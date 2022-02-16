@@ -3,15 +3,17 @@ using System;
 using Kanban.DataAccess.Persistance.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Kanban.DataAccess.Migrations
 {
     [DbContext(typeof(KanbanContext))]
-    partial class KanbanContextModelSnapshot : ModelSnapshot
+    [Migration("20220216115429_NotificationUserRelationship")]
+    partial class NotificationUserRelationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,18 +37,12 @@ namespace Kanban.DataAccess.Migrations
                     b.Property<int>("NotifyEventId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("TicketId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NotifyEventId");
-
-                    b.HasIndex("TicketId");
 
                     b.HasIndex("UserId");
 
@@ -415,21 +411,11 @@ namespace Kanban.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Kanban.Core.Entities.Ticket", "Ticket")
-                        .WithMany("Notifications")
-                        .HasForeignKey("TicketId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Kanban.Core.Entities.User", "User")
                         .WithMany("Notifications")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("NotifyEvent");
-
-                    b.Navigation("Ticket");
 
                     b.Navigation("User");
                 });
@@ -548,8 +534,6 @@ namespace Kanban.DataAccess.Migrations
 
             modelBuilder.Entity("Kanban.Core.Entities.Ticket", b =>
                 {
-                    b.Navigation("Notifications");
-
                     b.Navigation("UserTickets");
                 });
 

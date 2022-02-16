@@ -22,6 +22,28 @@ namespace Kanban.DataAccess.Persistance.Configurations
 
             #endregion
 
+            #region User
+
+            builder
+                .HasOne<User>(n => n.User)
+                .WithMany(u => u.Notifications)
+                .HasForeignKey(n => n.UserId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+
+            #endregion
+
+            #region Ticket
+
+            builder
+                .HasOne<Ticket>(n => n.Ticket)
+                .WithMany(t => t.Notifications)
+                .HasForeignKey(n => n.TicketId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+
+            #endregion
+
             builder
                 .ToTable("Notifications");
         }

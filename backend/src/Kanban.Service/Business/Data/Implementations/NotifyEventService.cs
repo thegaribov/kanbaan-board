@@ -1,4 +1,5 @@
 ﻿using Kanban.Core.Entities;
+using Kanban.Core.Enums.NotifyEvent;
 using Kanban.Core.Enums.Ticket;
 using Kanban.DataAccess.UnitOfWork.Abstracts;
 using Kanban.Service.Business.Data.Abstracts;
@@ -23,6 +24,10 @@ namespace Kanban.Service.Business.Data.Implementations
             return await _unitOfWork.NotifyEvents.GetAllAsync();
         }
 
+        public async Task<NotifyEvent> GetByIdentifierAsync(NotifyIdentifier identifier)
+        {
+            return await _unitOfWork.NotifyEvents.GetByIdentifierAsync(identifier);
+        }
 
         public async Task<NotifyEvent> GetAsync(int id)
         {

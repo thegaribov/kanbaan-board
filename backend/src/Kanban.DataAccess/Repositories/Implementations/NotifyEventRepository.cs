@@ -1,4 +1,5 @@
 ﻿using Kanban.Core.Entities;
+using Kanban.Core.Enums.NotifyEvent;
 using Kanban.DataAccess.Persistance.Contexts;
 using Kanban.DataAccess.Repositories.Abstracts;
 using Kanban.DataAccess.Repositories.Implementations.Base;
@@ -21,6 +22,11 @@ namespace Kanban.DataAccess.Repositories.Implementations
             :base(context)
         {
             _context = context;
+        }
+
+        public async Task<NotifyEvent> GetByIdentifierAsync(NotifyIdentifier identifier)
+        {
+            return await _context.NotifyEvents.FirstOrDefaultAsync(ne => ne.NotifyFor == identifier);
         }
     }
 }

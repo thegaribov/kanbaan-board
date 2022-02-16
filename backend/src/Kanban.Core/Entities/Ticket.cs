@@ -28,5 +28,6 @@ namespace Kanban.Core.Entities
         #endregion
 
         public ICollection<UserTicket> UserTickets { get; set; }
+        public ICollection<Notification> Notifications { get; set; }
     }
 }

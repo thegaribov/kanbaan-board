@@ -21,6 +21,13 @@ namespace Kanban.Service.Notification.Email.Abstracts
                 Body = body;
                 Receivers.AddRange(receivers?.Select(recipent => new MailboxAddress(string.Empty, recipent)));
             }
+
+            public Message(string subject, string body, params string[] receivers)
+            {
+                Subject = subject;
+                Body = body;
+                Receivers.AddRange(receivers?.Select(recipent => new MailboxAddress(string.Empty, recipent)));
+            }
         }
 
         Task<bool> SendAsync(Message message);

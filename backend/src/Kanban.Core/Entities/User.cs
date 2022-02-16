@@ -21,5 +21,6 @@ namespace Kanban.Core.Entities
 
         public ICollection<UserOrganisation> UserOrganisations { get; set; }
         public ICollection<UserTicket> UserTickets { get; set; }
+        public ICollection<Notification> Notifications { get; set; }
     }
 }

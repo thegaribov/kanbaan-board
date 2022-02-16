@@ -21,7 +21,7 @@ namespace Kanban.DataAccess.Persistance.Seeding
                         NotifyFor = NotifyIdentifier.TicketAssignedToUser,
                         EmailEnabled = true,
                         EmailSubject = "Ticket assignment notification",
-                        EmailText = "Hi {{to_user_fullname}}, ticket ({{ticket_name}}) assigned to you please check it",
+                        EmailText = "Hi {{to_user_fullname}}, ticket ({{ticket_title}}) assigned to you please check it",
                         IsActive = true
                     },
                 };
