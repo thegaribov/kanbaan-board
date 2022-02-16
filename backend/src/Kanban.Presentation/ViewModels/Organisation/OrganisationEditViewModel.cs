@@ -49,7 +49,10 @@ namespace Kanban.Presentation.ViewModels.Organisation
                 .WithMessage("Phone number can't be empty")
 
                 .NotNull()
-                .WithMessage("Phone number can't be empty");
+                .WithMessage("Phone number can't be empty")
+                
+                .Matches(@"^[+0-9]+")
+                .WithMessage("Phone number is not in correct format, only digits and + character is allowed");
 
             #endregion
 
