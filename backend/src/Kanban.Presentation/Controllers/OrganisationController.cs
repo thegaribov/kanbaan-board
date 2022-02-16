@@ -239,8 +239,8 @@ namespace Kanban.Presentation.Controllers
         {
             var currentUser = await _userService.GetUserAsync(User);
             var targetUser = await _userService.FindByIdAsync(userId);
+            var targetUserRole = await _userOrganisationService.GetUserRoleAsync(userId, organisationId);
             var organisation = await _organisationService.GetAsync(organisationId);
-
 
             //Check whether current user and target user in the same organisation or not
 
@@ -249,6 +249,7 @@ namespace Kanban.Presentation.Controllers
             {
                 User = targetUser,
                 Organisation = organisation,
+                Role = targetUserRole
             };
 
             return View(model);

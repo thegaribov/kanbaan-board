@@ -59,6 +59,12 @@ namespace Kanban.DataAccess.Repositories.Implementations
                 .FirstOrDefaultAsync(uo => uo.UserId == userId && uo.OrganisationId == organisationId);
         }
 
+        public async Task<OrganisationRole> GetUserRoleAsync(string userId, int organisationId)
+        {
+            return (await _context.UserOrganisations
+                .FirstOrDefaultAsync(uo => uo.UserId == userId && uo.OrganisationId == organisationId)).Role;
+        }
+
         public async Task<bool> IsOwnerAsync(string userId, int organisationId)
         {
             return await _context.UserOrganisations

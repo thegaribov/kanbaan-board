@@ -1,4 +1,5 @@
 ﻿using Kanban.Core.Entities;
+using Kanban.Core.Enums.Organisation;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace Kanban.Service.Business.Data.Abstracts
         Task<List<User>> GetAllUsersByOrganisationIdAsync(int organisationId);
         Task<List<UserOrganisation>> GetAllWithUserAndOrganisationByUserAsync(string userId);
         Task<UserOrganisation> GetAsync(string userId, int organisationId);
+        Task<OrganisationRole> GetUserRoleAsync(string userId, int organisationId);
         Task<bool> IsOwnerAsync(string userId, int organisationId);
         Task<bool> IsTakePartInAsync(string userId, int organisationId);
         Task<User> GetOrganisationOwnerByOrganisationAsync(int organisationId);

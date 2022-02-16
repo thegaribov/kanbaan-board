@@ -1,4 +1,5 @@
 ﻿using Kanban.Core.Entities;
+using Kanban.Core.Enums.Organisation;
 using Kanban.DataAccess.Persistance.Contexts;
 using Kanban.DataAccess.UnitOfWork.Abstracts;
 using Kanban.Service.Business.Data.Abstracts;
@@ -42,6 +43,11 @@ namespace Kanban.Service.Business.Data.Implementations
         public async Task<UserOrganisation> GetAsync(string userId, int organisationId)
         {
             return await _unitOfWork.UserOrganisations.GetAsync(userId, organisationId);
+        }
+
+        public async Task<OrganisationRole> GetUserRoleAsync(string userId, int organisationId)
+        {
+            return await _unitOfWork.UserOrganisations.GetUserRoleAsync(userId, organisationId);
         }
 
         public async Task<bool> IsOwnerAsync(string userId, int organisationId)
