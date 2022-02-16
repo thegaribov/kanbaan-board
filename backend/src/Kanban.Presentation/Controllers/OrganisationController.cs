@@ -5,6 +5,7 @@ using Kanban.Presentation.ViewModels.Organisation;
 using Kanban.Service.Business.Data.Abstracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace Kanban.Presentation.Controllers
         private readonly IOrganisationService _organisationService;
         private readonly IUserOrganisationService _userOrganisationService;
         private readonly ITicketService _ticketService;
+        private readonly ActionResult _ticketService;
 
         public OrganisationController(
             IUserService userService,
@@ -114,6 +116,9 @@ namespace Kanban.Presentation.Controllers
                 organisation.PhoneNumber = model.PhoneNumber;
 
                 await _organisationService.UpdateAsync(organisation);
+
+                TempData["Message"] = JsonConvert.SerializeObject(_actionResultMessageService.GetSuccessMessage(
+                        ActionType.Create, "Role " + newRole.Name, Url.Action("edit", "role", new { id = newRole.Id })));
 
                 return RedirectToRoute("organisation-index");
             }
