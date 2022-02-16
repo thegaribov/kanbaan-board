@@ -94,7 +94,7 @@
                                                             @foreach (var userTicket in ticket.UserTickets)
                                                             {
                                                                 <a asp-route="organisation-visitprofile" asp-route-organisationId="@ticket.OrganisationId" asp-route-userId="@userTicket.User.Id" class="float-end" data-bs-toggle="tooltip" data-bs-placement="bottom" title="@userTicket.User.FullName">
-                                                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUepaBdMZtoy5GmiKF_v1vkRbwo3MgxAiIwcaztDaqiYwLdV58jhq19hUX00btfdkBUF8&amp;usqp=CAU" asp-append-version="true" alt="user" class="thumb-xs rounded-circle">
+                                                                    @await Component.InvokeAsync("PrettyUserProfile", new { fullName = userTicket.User.FullName  })
                                                                 </a>
                                                             }
                                                         </div>

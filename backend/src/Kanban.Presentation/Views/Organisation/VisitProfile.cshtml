@@ -36,7 +36,7 @@
                         <div class="col-lg-4 align-self-center mb-3 mb-lg-0">
                             <div class="met-profile-main">
                                 <div class="met-profile-main-pic">
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUepaBdMZtoy5GmiKF_v1vkRbwo3MgxAiIwcaztDaqiYwLdV58jhq19hUX00btfdkBUF8&amp;usqp=CAUS" alt="" height="110" class="rounded-circle" asp-append-version="true">
+                                     @await Component.InvokeAsync("PrettyUserProfile", new { fullName = Model.User.FullName, size = "xl"  })
                                 </div>
                                 <div class="met-profile_user-detail">
                                     <h5 class="met-user-name">

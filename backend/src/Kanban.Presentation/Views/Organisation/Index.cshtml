@@ -58,7 +58,7 @@
                                 @foreach (var member in organisation.Members)
                                 {
                                     <a asp-route="organisation-visitprofile" asp-route-organisationId="@organisation.Id" asp-route-userId="@member.Id" class="user-avatar" data-bs-toggle="tooltip" data-bs-placement="bottom" title="@member.FullName">
-                                        <img src="https://img.favpng.com/13/14/23/computer-icons-user-vector-graphics-portable-network-graphics-psd-png-favpng-sXybdut2iBZYirt6eHqEhE2LN.jpg" alt="user" class="thumb-xs rounded-circle">
+                                        @await Component.InvokeAsync("PrettyUserProfile", new { fullName = member.FullName  })
                                     </a>
                                 }
                             </div><!--end img-group-->
