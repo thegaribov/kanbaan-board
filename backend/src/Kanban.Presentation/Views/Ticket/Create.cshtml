@@ -8,7 +8,7 @@
 }
 
 @section plugin_styles{
-<link href="~/admin/assets/plugins/select/selectr.min.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+<link href="~/client/assets/plugins/select/selectr.min.css" rel="stylesheet" type="text/css" asp-append-version="true" />
 }
 
 <div class="row">
@@ -89,6 +89,14 @@
                                 <span asp-validation-for="Description" class="invalid-feedback" style="display:block"></span>
                             </div>
                         </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="mb-3" asp-for="UsersIds"></label>
+                                <select id="users_multiselect" asp-for="UsersIds" asp-items='new SelectList(Model.Users,"Id", "FullName")' style="width: 100%" multiple="multiple" data-placeholder="Choose.."></select>
+                                <span asp-validation-for="UsersIds" class="invalid-feedback" style="display:block"></span>
+                            </div>
+
+                        </div>
                     </div>
                 </form>
             </div>
@@ -111,7 +119,12 @@
 
 
 @section plugin_scripts{
-<!-- Plugins js -->
-<script src="~/client/assets/plugins/select/selectr.min.js" asp-append-version="true"></script>
+    <!-- Plugins js -->
+    <script src="~/client/assets/plugins/select/selectr.min.js" asp-append-version="true"></script>
+}
+
+@section scripts{
+    <script src="~/client/pages/ticket/Create.js" asp-append-version="true"></script>
+
 }
 

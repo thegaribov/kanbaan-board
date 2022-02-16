@@ -21,17 +21,20 @@ namespace Kanban.Presentation.Controllers
         private readonly IOrganisationService _organisationService;
         private readonly IUserOrganisationService _userOrganisationService;
         private readonly ITicketService _ticketService;
+        private readonly IUserTicketService _userTicketService;
 
         public TicketController(
             IUserService userService,
             IOrganisationService organisationService,
             IUserOrganisationService userOrganisationService,
-            ITicketService ticketService)
+            ITicketService ticketService,
+            IUserTicketService userTicketService)
         {
             _userService = userService;
             _organisationService = organisationService;
             _userOrganisationService = userOrganisationService;
             _ticketService = ticketService;
+            _userTicketService = userTicketService;
         }
 
         #endregion
@@ -52,7 +55,8 @@ namespace Kanban.Presentation.Controllers
             var model = new TicketCreateViewModel
             {
                 OrganisationId = organisation.Id,
-                OrganisationName = organisation.Name
+                OrganisationName = organisation.Name,
+                Users = await _userOrganisationService.GetAllUsersByOrganisationIdAsync(organisationId)
             };
 
             return View(model);
@@ -79,6 +83,23 @@ namespace Kanban.Presentation.Controllers
                 };
 
                 await _ticketService.CreateAsync(newTicket);
+
+                //Add selected user to ticket
+                foreach (var userId in model.UsersIds)
+                {
+                    var user = await _userService.FindByIdAsync(userId);
+
+                    if (user != null)
+                    {
+                        var userTicket = new UserTicket
+                        {
+                            UserId = user.Id,
+                            TicketId = newTicket.Id
+                        };
+
+                        await _userTicketService.CreateAsync(userTicket);
+                    }
+                }
 
 
                 return RedirectToRoute("organisation-board", new { organisationId = model.OrganisationId });

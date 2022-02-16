@@ -12,6 +12,7 @@ namespace Kanban.Service.Business.Data.Abstracts
     public interface IUserOrganisationService
     {
         Task<List<UserOrganisation>> GetAllAsync();
+        Task<List<User>> GetAllUsersByOrganisationIdAsync(int organisationId);
         Task<List<UserOrganisation>> GetAllWithUserAndOrganisationByUserAsync(string userId);
         Task<UserOrganisation> GetAsync(string userId, int organisationId);
         Task<bool> IsOwnerAsync(string userId, int organisationId);

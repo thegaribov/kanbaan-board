@@ -1,12 +1,20 @@
 ﻿using FluentValidation;
+using Kanban.Core.Entities;
 using Kanban.Core.Enums.Ticket;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Kanban.Presentation.ViewModels.Ticket
 {
     public class TicketCreateViewModel
     {
+        public TicketCreateViewModel()
+        {
+            UsersIds = new List<string>();
+            Users = new List<User>();
+        }
+
         public int OrganisationId { get; set; }
 
         [Display(Name = "Related organisation name")]
@@ -24,6 +32,10 @@ namespace Kanban.Presentation.ViewModels.Ticket
 
         [Display(Name = "Status")]
         public TicketStatus Status { get; set; }
+
+        [Display(Name = "Users")]
+        public List<string> UsersIds { get; set; }
+        public List<User> Users { get; set; }
     }
 
     public class TicketCreateViewModelValidator : AbstractValidator<TicketCreateViewModel>
@@ -75,10 +87,7 @@ namespace Kanban.Presentation.ViewModels.Ticket
                 .WithMessage("Description can't be empty")
 
                 .MinimumLength(3)
-                .WithMessage("Description min length can be 3")
-
-                .MaximumLength(40)
-                .WithMessage("Description max length can be 40");
+                .WithMessage("Description min length can be 5");
 
             #endregion
 

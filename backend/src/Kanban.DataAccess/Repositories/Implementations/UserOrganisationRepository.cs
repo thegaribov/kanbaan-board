@@ -28,6 +28,14 @@ namespace Kanban.DataAccess.Repositories.Implementations
             return await _context.UserOrganisations.ToListAsync();
         }
 
+        public async Task<List<User>> GetAllUsersByOrganisationIdAsync(int organisationId)
+        {
+            return await _context.UserOrganisations
+                .Where(uo => uo.OrganisationId == organisationId)
+                .Select(uo => uo.User)
+                .ToListAsync();
+        }
+
         public async Task<List<UserOrganisation>> GetAllWithUserAndOrganisationByUserAsync(string userId)
         {
             return await _context.UserOrganisations
