@@ -2,11 +2,14 @@
 using Kanban.Core.Enums.Organisation;
 using Kanban.Core.Enums.Ticket;
 using Kanban.Core.Extensions.IdentityResult;
+using Kanban.Core.Helpers.ActionResultMessage;
 using Kanban.Presentation.ViewModels.Organisation;
 using Kanban.Presentation.ViewModels.Ticket;
 using Kanban.Service.Business.Data.Abstracts;
+using Kanban.Service.Infrastructure.ActionResultMessage;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -26,7 +29,7 @@ namespace Kanban.Presentation.Controllers
         private readonly ITicketService _ticketService;
         private readonly IUserTicketService _userTicketService;
         private readonly INotificationService _notificationService;
-
+        private readonly ActionResultMessageService _actionResultMessageService;
 
         public TicketController(
             IUserService userService,
@@ -42,6 +45,7 @@ namespace Kanban.Presentation.Controllers
             _ticketService = ticketService;
             _userTicketService = userTicketService;
             _notificationService = notificationService;
+            _actionResultMessageService = new();
         }
 
         #endregion
@@ -113,6 +117,9 @@ namespace Kanban.Presentation.Controllers
                         _notificationService.SendTicketAssignedInBackground(user, newTicket);
                     }
                 }
+
+                TempData["Message"] = JsonConvert.SerializeObject(_actionResultMessageService.GetSuccessMessage(
+                        ActionType.Create, "New ticket", Url.RouteUrl("ticket-edit", new { organisationId = model.OrganisationId, ticketId = newTicket.Id })));
 
 
                 return RedirectToRoute("organisation-board", new { organisationId = model.OrganisationId });
@@ -199,6 +206,9 @@ namespace Kanban.Presentation.Controllers
                     }
                 }
 
+                TempData["Message"] = JsonConvert.SerializeObject(_actionResultMessageService.GetSuccessMessage(
+                        ActionType.Update, $"Tticket ({ticket.Title})", Url.RouteUrl("ticket-edit", new { organisationId = model.OrganisationId, ticketId = ticket.Id })));
+
 
                 return RedirectToRoute("organisation-board", new { organisationId = model.OrganisationId });
             }
@@ -224,6 +234,9 @@ namespace Kanban.Presentation.Controllers
             if (ticket == null) return NotFound();
 
             await _ticketService.DeleteAsync(ticket);
+
+            TempData["Message"] = JsonConvert.SerializeObject(_actionResultMessageService.GetSuccessMessage(
+                        ActionType.Delete, $"Ticket ({ticket.Title})"));
 
             return RedirectToRoute("organisation-board", new { organisationId = organisationId });
         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Kanban.Service.Infrastructure.ActionResultMessage
 {
-    internal class ActionResultMessage
+    public class ActionResultMessageService
     {
         #region ResultMessage
 

@@ -16,6 +16,9 @@
 </div>
 <!-- end page title end breadcrumb -->
 
+@await Component.InvokeAsync("ActionResultMessage")
+
+
 <div class="row">
 
     @foreach (var organisation in Model.Organisations)

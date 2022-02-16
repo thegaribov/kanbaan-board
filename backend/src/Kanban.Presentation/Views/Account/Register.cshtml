@@ -6,6 +6,8 @@
     var returnUrl = Context.Request.Query["ReturnUrl"];
 }
 
+
+
 <div class="row">
     <div class="col-lg-4 mx-auto">
         <div class="card">
@@ -20,6 +22,10 @@
             </div>
 
             <div class="card-body pt-0">
+                <div class="col-lg-12 mt-2">
+                    @await Component.InvokeAsync("ActionResultMessage")
+                </div>
+
                 <form asp-controller="account" asp-action="register" method="POST" class="my-4">
 
                     @Html.AntiForgeryToken()

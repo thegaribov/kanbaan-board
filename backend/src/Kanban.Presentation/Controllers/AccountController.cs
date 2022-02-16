@@ -1,9 +1,12 @@
 ﻿using Kanban.Core.Entities;
 using Kanban.Core.Enums.Organisation;
 using Kanban.Core.Extensions.IdentityResult;
+using Kanban.Core.Helpers.ActionResultMessage;
 using Kanban.Presentation.ViewModels.Account;
 using Kanban.Service.Business.Data.Abstracts;
+using Kanban.Service.Infrastructure.ActionResultMessage;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 
 namespace Kanban.Presentation.Controllers
@@ -17,6 +20,7 @@ namespace Kanban.Presentation.Controllers
         private readonly IUserService _userService;
         private readonly IOrganisationService _organisationService;
         private readonly IUserOrganisationService _userOrganisationService;
+        private readonly ActionResultMessageService _actionResultMessageService;
 
         public AccountController(
             IUserService userService, 
@@ -26,6 +30,7 @@ namespace Kanban.Presentation.Controllers
             _userService = userService;
             _organisationService = organisationService;
             _userOrganisationService = userOrganisationService;
+            _actionResultMessageService = new();
         }
 
         #endregion
@@ -128,6 +133,8 @@ namespace Kanban.Presentation.Controllers
 
                 await _userOrganisationService.CreateAsync(organisationUser);
 
+                TempData["Message"] = JsonConvert.SerializeObject(_actionResultMessageService.GetResultMessage(
+                    ActionResultMessageType.Success, "User successfully created, now you can login"));
 
                 return RedirectToRoute("account-login");
             }

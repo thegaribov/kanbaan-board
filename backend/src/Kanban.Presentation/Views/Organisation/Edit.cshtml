@@ -10,6 +10,8 @@
     <link href="~/admin/assets/plugins/select/selectr.min.css" rel="stylesheet" type="text/css" asp-append-version="true" />
 }
 
+@await Component.InvokeAsync("ActionResultMessage")
+
 <div class="row">
     <div class="col-sm-12">
         <div class="page-title-box">
@@ -26,13 +28,7 @@
     </div><!--end col-->
 </div>
 
-
-@if (TempData["message"] != null)
-{
-    <div class="alert alert-@TempData["message_type"]">
-        @TempData["message"]
-    </div>
-}
+@await Component.InvokeAsync("ActionResultMessage")
 
 <div class="row">
     <div class="col-12">

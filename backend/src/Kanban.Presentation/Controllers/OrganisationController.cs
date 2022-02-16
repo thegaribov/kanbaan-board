@@ -1,8 +1,10 @@
 ﻿using Kanban.Core.Entities;
 using Kanban.Core.Enums.Organisation;
 using Kanban.Core.Extensions.IdentityResult;
+using Kanban.Core.Helpers.ActionResultMessage;
 using Kanban.Presentation.ViewModels.Organisation;
 using Kanban.Service.Business.Data.Abstracts;
+using Kanban.Service.Infrastructure.ActionResultMessage;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -22,7 +24,7 @@ namespace Kanban.Presentation.Controllers
         private readonly IOrganisationService _organisationService;
         private readonly IUserOrganisationService _userOrganisationService;
         private readonly ITicketService _ticketService;
-        private readonly ActionResult _ticketService;
+        private readonly ActionResultMessageService _actionResultMessageService;
 
         public OrganisationController(
             IUserService userService,
@@ -34,6 +36,7 @@ namespace Kanban.Presentation.Controllers
             _organisationService = organisationService;
             _userOrganisationService = userOrganisationService;
             _ticketService = ticketService;
+            _actionResultMessageService = new();
         }
 
         #endregion
@@ -118,7 +121,7 @@ namespace Kanban.Presentation.Controllers
                 await _organisationService.UpdateAsync(organisation);
 
                 TempData["Message"] = JsonConvert.SerializeObject(_actionResultMessageService.GetSuccessMessage(
-                        ActionType.Create, "Role " + newRole.Name, Url.Action("edit", "role", new { id = newRole.Id })));
+                        ActionType.Update, "Organisation", Url.RouteUrl("organisation-edit", new { id = organisation.Id })));
 
                 return RedirectToRoute("organisation-index");
             }
@@ -190,6 +193,10 @@ namespace Kanban.Presentation.Controllers
                 };
 
                 await _userOrganisationService.CreateAsync(organisationUser);
+
+                //Action result message
+                TempData["Message"] = JsonConvert.SerializeObject(_actionResultMessageService.GetResultMessage(
+                    ActionResultMessageType.Success, $"New member ({newUser.FullName} - {newUser.Email}) successfully added to organisation"));
 
                 return RedirectToRoute("organisation-index");
             }

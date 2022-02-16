@@ -8,8 +8,10 @@
 }
 
 @section plugin_styles{
-<link href="~/client/assets/plugins/select/selectr.min.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+    <link href="~/client/assets/plugins/select/selectr.min.css" rel="stylesheet" type="text/css" asp-append-version="true" />
 }
+
+@await Component.InvokeAsync("ActionResultMessage")
 
 <div class="row">
     <div class="col-sm-12">
