@@ -82,7 +82,7 @@ namespace Kanban.Service.Notification.Email.Implementations.SMTP
             {
                 // Get services
                 using var scope = serviceScopeFactory.CreateScope();
-                var smtpEmailService = scope.ServiceProvider.GetRequiredService<Smtp>();
+                var smtpEmailService = scope.ServiceProvider.GetRequiredService<IEmailService>();
                 var logger = scope.ServiceProvider.GetRequiredService<ILogger<Smtp>>();
 
                 try

@@ -7,6 +7,8 @@ using Kanban.Service.Business.Data.Abstracts;
 using Kanban.Service.Business.Data.Implementations;
 using Kanban.Service.Infrastructure.BackgroundTask.BackgroundTaskQueue.Abstracts;
 using Kanban.Service.Infrastructure.BackgroundTask.BackgroundTaskQueue.Implementations;
+using Kanban.Service.Notification.Email.Abstracts;
+using Kanban.Service.Notification.Email.Implementations.SMTP;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -140,6 +142,9 @@ namespace Kanban.Presentation
             services.AddTransient<IUserOrganisationService, UserOrganisationService>();
             services.AddTransient<ITicketService, TicketService>();
             services.AddTransient<IUserTicketService, UserTicketService>();
+
+            //Email service
+            services.AddTransient<IEmailService, Smtp>();
 
             #endregion
 
