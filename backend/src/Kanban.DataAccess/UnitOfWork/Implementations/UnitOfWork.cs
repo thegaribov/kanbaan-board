@@ -52,6 +52,10 @@ namespace Kanban.DataAccess.UnitOfWork.Implementations
         public IUserTicketRepository UserTickets => userTicket ??= new UserTicketRepository(_context);
 
 
+        private INotifyEventRepository notifyEvent;
+        public INotifyEventRepository NotifyEvents => notifyEvent ??= new NotifyEventRepository(_context);
+
+
         public async Task CommitAsync()
         {
             await _context.SaveChangesAsync();
