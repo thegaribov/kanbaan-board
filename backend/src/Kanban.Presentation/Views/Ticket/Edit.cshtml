@@ -113,7 +113,7 @@
             <div class="card-body">
                 <div class="form-group mt-3">
                     <button class="btn btn-primary" type="submit" form="form-edit">Save</button>
-                    <a asp-route="organisation-board" class="btn btn-danger">Cancel</a>
+                    <a asp-route="organisation-board" asp-route-organisationId="@Model.OrganisationId" class="btn btn-danger">Cancel</a>
                 </div>
             </div>
         </div>

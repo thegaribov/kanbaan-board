@@ -119,7 +119,7 @@ namespace Kanban.Presentation.Controllers
                 }
 
                 TempData["Message"] = JsonConvert.SerializeObject(_actionResultMessageService.GetSuccessMessage(
-                        ActionType.Create, "New ticket", Url.RouteUrl("ticket-edit", new { organisationId = model.OrganisationId, ticketId = newTicket.Id })));
+                        ActionType.Create, $"New ticket ({newTicket.Title})", Url.RouteUrl("ticket-edit", new { organisationId = model.OrganisationId, ticketId = newTicket.Id })));
 
 
                 return RedirectToRoute("organisation-board", new { organisationId = model.OrganisationId });
