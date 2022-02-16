@@ -15,6 +15,9 @@ namespace Kanban.DataAccess.Persistance.Seeding
         {
             var context = services.GetRequiredService<KanbanContext>();
             await context.Database.MigrateAsync();
+
+            //Seed default notify event content, so in future we can edit them from staff panel
+            await DatabaseContextextSeed.SeedNotifyEventsAsync(context);
         }
     }
 }

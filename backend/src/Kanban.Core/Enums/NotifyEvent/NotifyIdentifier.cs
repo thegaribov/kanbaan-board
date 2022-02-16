@@ -9,7 +9,7 @@ namespace Kanban.Core.Enums.NotifyEvent
 {
     public enum NotifyIdentifier
     {
-        [Display(Name = "Task assigned to user")]
-        TaskAssignedToUser = 1,
+        [Display(Name = "Ticket assigned to user")]
+        TicketAssignedToUser = 1,
     }
 }
