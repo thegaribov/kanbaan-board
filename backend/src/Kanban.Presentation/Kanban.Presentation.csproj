@@ -18,4 +18,8 @@
     <ProjectReference Include="..\Kanban.Service\Kanban.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\client\pages\Organisation\" />
+  </ItemGroup>
+
 </Project>
