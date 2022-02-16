@@ -56,6 +56,10 @@ namespace Kanban.DataAccess.UnitOfWork.Implementations
         public INotifyEventRepository NotifyEvents => notifyEvent ??= new NotifyEventRepository(_context);
 
 
+        private INotificationRepository notification;
+        public INotificationRepository Notifications => notification ??= new NotificationRepository(_context);
+
+
         public async Task CommitAsync()
         {
             await _context.SaveChangesAsync();

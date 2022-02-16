@@ -17,6 +17,8 @@ namespace Kanban.DataAccess.UnitOfWork.Abstracts
         ITicketRepository Tickets { get; }
         IUserTicketRepository UserTickets { get; }
         INotifyEventRepository NotifyEvents { get; }
+        INotificationRepository Notifications { get; }
+
 
         Task CommitAsync();
     }
