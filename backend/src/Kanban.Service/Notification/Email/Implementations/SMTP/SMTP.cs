@@ -30,7 +30,7 @@ namespace Kanban.Service.Notification.Email.Implementations.SMTP
 
         {
             _senderEmail = /*Environment.GetEnvironmentVariable("SMTP_SENDER_EMAIL");*/ "maho.learn.c.sharp@gmail.com";
-            _senderEmailPassword = /*Environment.GetEnvironmentVariable("SMTP_SENDER_EMAIL_PASSWORD");*/ "smtp.gmail.com";
+            _senderEmailPassword = /*Environment.GetEnvironmentVariable("SMTP_SENDER_EMAIL_PASSWORD");*/ "csharp123321";
             _senderHost = /*Environment.GetEnvironmentVariable("SMTP_SENDER_HOST");*/ "smtp.gmail.com";
             _port = /*int.Parse(Environment.GetEnvironmentVariable("SMTP_PORT"));*/ 465;
 

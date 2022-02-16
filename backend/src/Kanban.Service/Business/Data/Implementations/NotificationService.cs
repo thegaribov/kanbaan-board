@@ -107,12 +107,14 @@ namespace Kanban.Service.Business.Data.Implementations
 
         private async Task<string> GetUserFullNameAsync(Core.Entities.Notification notification)
         {
-            return notification?.User.FullName;
+            var user = await _userService.FindByIdAsync(notification.UserId);
+            return user?.FullName;
         }
 
         private async Task<string> GetTicketTitleAsync(Core.Entities.Notification notification)
         {
-            return notification?.Ticket.Title;
+            var ticket = await _ticketService.GetAsync(notification.TicketId); 
+            return ticket?.Title;
         }
 
         #endregion
@@ -138,12 +140,14 @@ namespace Kanban.Service.Business.Data.Implementations
         private readonly IEmailService _emailService;
         private readonly IBackgroundTaskQueue _backgroundTaskQueue;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly ITicketService _ticketService;
         public NotificationService(
             IUserService userService,
             INotifyEventService notifyEventService,
             IEmailService emailService,
             IBackgroundTaskQueue backgroundTaskQueue,
-            IUnitOfWork unitOfWork)
+            IUnitOfWork unitOfWork,
+            ITicketService ticketService)
         {
             _userService = userService;
             _notifyEventService = notifyEventService;
@@ -151,6 +155,7 @@ namespace Kanban.Service.Business.Data.Implementations
             _content = new();
             _backgroundTaskQueue = backgroundTaskQueue;
             _unitOfWork = unitOfWork;
+            _ticketService = ticketService;
         }
    
         public async Task<List<Core.Entities.Notification>> GetAllAsync()
