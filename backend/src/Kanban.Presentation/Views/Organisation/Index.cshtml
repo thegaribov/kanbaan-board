@@ -10,7 +10,7 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="page-title-box">
-            <h4 class="page-title">Organisations</h4>
+            <h4 class="page-title">Organisation</h4>
         </div><!--end page-title-box-->
     </div><!--end col-->
 </div>
@@ -39,7 +39,7 @@
                 </div>
                     <div class="d-flex justify-content-between">
                         <h6 class="fw-semibold">
-                            Creat date (Baku/Azerbaijan):
+                            Create date (Baku/Azerbaijan):
                             <span class="text-muted font-weight-normal"> @(organisation.CreatedAt.HasValue ? organisation.CreatedAt.Value.AddHours(4).ToLongDateString() : "" )</span>
                         </h6>
                         <h6 class="fw-semibold">
@@ -64,7 +64,7 @@
                             </div><!--end img-group-->
                             <ul class="list-inline mb-0 align-self-center">
                                 <li class="list-item d-inline-block">
-                                    <a asp-route="organisation-board" asp-route-organisationId="@organisation.Id">
+                                    <a asp-route="organisation-board" asp-route-organisationId="@organisation.Id" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Organisation board">
                                         <i class="mdi mdi-clipboard-account-outline text-primary font-30"></i>
                                         @*<span class="text-muted fw-bold">3</span>*@
                                     </a>
@@ -73,13 +73,13 @@
                                 @if(organisation.IsCurrentUserOwner)
                                 {
                                     <li class="list-item d-inline-block">
-                                        <a asp-route="organisation-add-member" asp-route-organisationId="@organisation.Id">
+                                        <a asp-route="organisation-add-member" asp-route-organisationId="@organisation.Id" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add member">
                                             <i class="mdi mdi-account-multiple-plus-outline text-primary font-30"></i>
                                         </a>
                                     </li>
 
                                     <li class="list-item d-inline-block">
-                                        <a asp-route="organisation-edit" asp-route-id="@organisation.Id" class="ms-2" >
+                                        <a asp-route="organisation-edit" asp-route-id="@organisation.Id" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit" class="ms-2" >
                                             <i class="mdi mdi-pencil-outline text-primary font-30"></i>
                                         </a>
                                     </li>

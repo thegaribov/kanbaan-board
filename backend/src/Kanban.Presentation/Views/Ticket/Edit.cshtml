@@ -97,8 +97,8 @@
                                 <label class="mb-3" asp-for="UsersIds"></label>
                                 <select id="users_multiselect" asp-for="UsersIds" asp-items='new SelectList(Model.Users,"Id", "FullName")' style="width: 100%" multiple="multiple" data-placeholder="Choose.."></select>
                                 <span asp-validation-for="UsersIds" class="invalid-feedback" style="display:block"></span>
+                                <small class="form-text text-muted">To add more members, firstly you should add member to organisation</small>    
                             </div>
-
                         </div>
                     </div>
                 </form>

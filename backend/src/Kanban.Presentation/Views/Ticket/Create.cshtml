@@ -44,7 +44,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <form method="POST" enctype="multipart/form-data" asp-route="ticket-create" asp-route-id="@Model.OrganisationId" id="form-create">
+                <form method="POST" enctype="multipart/form-data" asp-route="ticket-create" asp-route-organisationId="@Model.OrganisationId" id="form-create">
                     <input type="hidden" asp-for="OrganisationId" />
                     <input type="hidden" asp-for="OrganisationName" />
                     @Html.AntiForgeryToken()
@@ -96,8 +96,8 @@
                                 <label class="mb-3" asp-for="UsersIds"></label>
                                 <select id="users_multiselect" asp-for="UsersIds" asp-items='new SelectList(Model.Users,"Id", "FullName")' style="width: 100%" multiple="multiple" data-placeholder="Choose.."></select>
                                 <span asp-validation-for="UsersIds" class="invalid-feedback" style="display:block"></span>
+                                <small class="form-text text-muted">To add more members, firstly you should add member to organisation</small>    
                             </div>
-
                         </div>
                     </div>
                 </form>
