@@ -142,6 +142,7 @@ namespace Kanban.Presentation
             services.AddTransient<IUserOrganisationService, UserOrganisationService>();
             services.AddTransient<ITicketService, TicketService>();
             services.AddTransient<IUserTicketService, UserTicketService>();
+            services.AddTransient<INotifyEventService, NotifyEventService>();
 
             //Email service
             services.AddTransient<IEmailService, Smtp>();

@@ -17,7 +17,7 @@ namespace Kanban.DataAccess.Repositories.Implementations
     {
         private readonly KanbanContext _context;
 
-        public NotifyEventRepository(KanbanContext context)
+        public OrganisationRepository(KanbanContext context)
             :base(context)
         {
             _context = context;
