@@ -45,7 +45,7 @@ Basic task management system. Features :
 
 # How To Restore default db
 - `cd _development/backups`
-- Run command : cat dumb_data_only.sql | docker exec -i postgre-db psql -U kanban-user kanban-db
+- Run command : `cat dumb_data_only.sql | docker exec -i postgre-db psql -U kanban-user kanban-db`
 
 # Additional notes:
 - If you want to add your smtp email credentials you can do this by changing env file in `_development/envs/web.env`
