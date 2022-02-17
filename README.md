@@ -45,7 +45,7 @@ Basic task management system. Features :
 
 # How To Restore default db
 - `cd _development/postgresql-backups`
-- Run command : `cat dumb_data_only.sql | docker exec -i postgre-db psql -U kanban-user kanban-db`
+- Run command : `cat dump_data_only.sql | docker exec -i postgre-db psql -U kanban-user kanban-db`
 - Default admin user credentials : 
 - Email = qaribovmahmud@gmail.com
 - Password = maho123321
