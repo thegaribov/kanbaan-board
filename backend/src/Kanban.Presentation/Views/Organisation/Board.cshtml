@@ -27,7 +27,6 @@
     </div><!--end col-->
 </div>
 <!-- end page title end breadcrumb -->
-
 @await Component.InvokeAsync("ActionResultMessage")
 
 <div class="row">
@@ -50,12 +49,12 @@
                                         <a class="dropdown-toggle arrow-none" id="drop1" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                             <i class="las la-ellipsis-v font-24 text-muted"></i>
                                         </a>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="drop1">
-                                            @if (Model.IsCurrentUserOwner)
-                                            {
+                                        @if (Model.IsCurrentUserOwner)
+                                        {
+                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="drop1">
                                                 <a asp-route="ticket-create" asp-route-organisationId="@Model.OrganisationId" asp-route-status="@ticketStatus" class="dropdown-item">Add Ticket</a>
-                                            }
-                                        </div>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                                 <div id="project-list-left" class="pb-1">
@@ -69,13 +68,13 @@
                                                         <a class="dropdown-toggle mr-n2 mt-n2" id="drop2" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                                             <i class="las la-ellipsis-v font-14 text-muted"></i>
                                                         </a>
-                                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="drop2">
-                                                            @if(Model.IsCurrentUserOwner)
-                                                            {
+                                                        @if (Model.IsCurrentUserOwner)
+                                                        {
+                                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="drop2">
                                                                 <a asp-route="ticket-edit" asp-route-organisationId="@Model.OrganisationId" asp-route-ticketId="@ticket.Id" class="dropdown-item">Edit</a>
                                                                 <a asp-route="ticket-delete" asp-route-organisationId="@Model.OrganisationId" asp-route-ticketId="@ticket.Id" class="dropdown-item">Delete</a>
-                                                            }
-                                                        </div>
+                                                            </div>
+                                                        }
                                                     </div>
                                                     <h5 class="my-1 font-14">
                                                         @ticket.Title
@@ -116,7 +115,7 @@
                                         }
                                     }
                                 </div>
-                                @if(Model.IsCurrentUserOwner)
+                                @if (Model.IsCurrentUserOwner)
                                 {
                                     <a asp-route="ticket-create" asp-route-organisationId="@Model.OrganisationId" asp-route-status="@ticketStatus" class="btn w-100 btn-soft-primary btn-sm">
                                         Add Ticket
