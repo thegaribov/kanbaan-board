@@ -143,26 +143,6 @@ INSERT INTO public."UserTickets" ("TicketId", "UserId", "UpdatedAt", "CreatedAt"
 
 
 --
--- Data for Name: __EFMigrationsHistory; Type: TABLE DATA; Schema: public; Owner: kanban-user
---
-
-INSERT INTO public."__EFMigrationsHistory" ("MigrationId", "ProductVersion") VALUES ('20220214143427_Initial', '5.0.14');
-INSERT INTO public."__EFMigrationsHistory" ("MigrationId", "ProductVersion") VALUES ('20220214160010_UserFullName', '5.0.14');
-INSERT INTO public."__EFMigrationsHistory" ("MigrationId", "ProductVersion") VALUES ('20220214160447_Organisation', '5.0.14');
-INSERT INTO public."__EFMigrationsHistory" ("MigrationId", "ProductVersion") VALUES ('20220214165503_UserOrganisation', '5.0.14');
-INSERT INTO public."__EFMigrationsHistory" ("MigrationId", "ProductVersion") VALUES ('20220215182132_Ticket', '5.0.14');
-INSERT INTO public."__EFMigrationsHistory" ("MigrationId", "ProductVersion") VALUES ('20220215184525_UserTicketOrganisation', '5.0.14');
-INSERT INTO public."__EFMigrationsHistory" ("MigrationId", "ProductVersion") VALUES ('20220215204656_TicketOrganisation', '5.0.14');
-INSERT INTO public."__EFMigrationsHistory" ("MigrationId", "ProductVersion") VALUES ('20220215205652_UserTicket', '5.0.14');
-INSERT INTO public."__EFMigrationsHistory" ("MigrationId", "ProductVersion") VALUES ('20220216103145_NotifyEvent', '5.0.14');
-INSERT INTO public."__EFMigrationsHistory" ("MigrationId", "ProductVersion") VALUES ('20220216104515_Notifications', '5.0.14');
-INSERT INTO public."__EFMigrationsHistory" ("MigrationId", "ProductVersion") VALUES ('20220216115429_NotificationUserRelationship', '5.0.14');
-INSERT INTO public."__EFMigrationsHistory" ("MigrationId", "ProductVersion") VALUES ('20220216115621_NotificationConstraintUpdate', '5.0.14');
-INSERT INTO public."__EFMigrationsHistory" ("MigrationId", "ProductVersion") VALUES ('20220216120930_NotificationTicketRelation', '5.0.14');
-INSERT INTO public."__EFMigrationsHistory" ("MigrationId", "ProductVersion") VALUES ('20220217094752_ProtectionKeys', '5.0.14');
-
-
---
 -- Data for Name: spatial_ref_sys; Type: TABLE DATA; Schema: public; Owner: kanban-user
 --
 
