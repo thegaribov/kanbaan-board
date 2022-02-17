@@ -46,11 +46,11 @@
                                         @ticketStatus.GetDisplayName()
                                     </h4>
                                     <div class="dropdown kanban-main-dropdown">
-                                        <a class="dropdown-toggle arrow-none" id="drop1" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                            <i class="las la-ellipsis-v font-24 text-muted"></i>
-                                        </a>
                                         @if (Model.IsCurrentUserOwner)
                                         {
+                                            <a class="dropdown-toggle arrow-none" id="drop1" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                                <i class="las la-ellipsis-v font-24 text-muted"></i>
+                                            </a>
                                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="drop1">
                                                 <a asp-route="ticket-create" asp-route-organisationId="@Model.OrganisationId" asp-route-status="@ticketStatus" class="dropdown-item">Add Ticket</a>
                                             </div>
@@ -65,11 +65,11 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <div class="dropdown d-inline-block float-end">
-                                                        <a class="dropdown-toggle mr-n2 mt-n2" id="drop2" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                                            <i class="las la-ellipsis-v font-14 text-muted"></i>
-                                                        </a>
                                                         @if (Model.IsCurrentUserOwner)
                                                         {
+                                                            <a class="dropdown-toggle mr-n2 mt-n2" id="drop2" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                                                <i class="las la-ellipsis-v font-14 text-muted"></i>
+                                                            </a>
                                                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="drop2">
                                                                 <a asp-route="ticket-edit" asp-route-organisationId="@Model.OrganisationId" asp-route-ticketId="@ticket.Id" class="dropdown-item">Edit</a>
                                                                 <a asp-route="ticket-delete" asp-route-organisationId="@Model.OrganisationId" asp-route-ticketId="@ticket.Id" class="dropdown-item">Delete</a>
