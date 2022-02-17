@@ -39,8 +39,15 @@ Basic task management system. Features :
 
 # How To Run
 - Clone repository and open `kanban` folder
-- Run docker : `docker-compose -f _development/docker-compose.yml up --build`
+- Run docker : `docker-compose -f _development/docker-compose.yml up --build -d`
 - Application will be started on : `http://localhost:5000/`
 - I added additional container (`portrainer`) to manage dockers so you can check it :  `http://localhost:9000/`  
-- Enjoy...
+
+# How To Restore default db
+- `cd _development/backups`
+- Run command : `cat dumb_data_only.sql | docker exec -i postgre-db psql -U kanban-user kanban-db`
+
+# Additional notes:
+- If you want to add your smtp email credentials you can do this by changing env file in `_development/envs/web.env`
+
 
