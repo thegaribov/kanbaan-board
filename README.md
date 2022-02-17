@@ -12,6 +12,12 @@ Basic task management system
 - MailKit
 - Newtonsoft.Json 
 
+# Design Patterns
+- Unit Of Work
+- Repository & Generic Repository
+- ORM
+- Inversion of Control / Dependency injection
+
 # Prerequirements
 - Visual Studio 2019+
 - .NET Core 5
