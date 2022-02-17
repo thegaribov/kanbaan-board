@@ -37,6 +37,10 @@ services:
     image: portainer/portainer-ce:latest
     container_name: portainer
     restart: unless-stopped
+    depends_on:
+      - "web"
+      - "postgre-db"
+      
     security_opt:
       - no-new-privileges:true
     volumes:
