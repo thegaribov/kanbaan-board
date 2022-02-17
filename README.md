@@ -44,8 +44,14 @@ Basic task management system. Features :
 - I added additional container (`portrainer`) to manage dockers so you can check it :  `http://localhost:9000/`  
 
 # How To Restore default db
-- `cd _development/backups`
+- `cd _development/postgresql-backups`
 - Run command : `cat dumb_data_only.sql | docker exec -i postgre-db psql -U kanban-user kanban-db`
+- Default admin user credentials : 
+- Email = qaribovmahmud@gmail.com
+- Password = maho123321
+- Default member user credentials :
+- Email =  john@garibov.com
+- Password = maho123321 
 
 # Additional notes:
 - If you want to add your smtp email credentials you can do this by changing env file in `_development/envs/web.env`
