@@ -1,5 +1,14 @@
 # kanban
-Basic task management system
+Basic task management system. Features :
+1. Creating organisation with default admin user from register
+2. Editing organisation deatails
+3. Adding new users to organisation.
+4. New users can login with given credentials
+5. View user's profile
+6. View organisation's ticket board
+7. Create/Edit/New organisation's tickets
+8. Assign ticket to organisation member
+9. Notify member about assignment with email
 
 # Technical Stack
 - ASP.NET Core 5.0 (with .NET Core 5.0)
