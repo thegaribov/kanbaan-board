@@ -237,13 +237,11 @@ namespace Kanban.Presentation.Controllers
         [HttpGet("{organisationId}/visitProfile/{userId}", Name = "organisation-visitprofile")]
         public async Task<IActionResult> VisitProfile(int organisationId, string userId)
         {
-            var currentUser = await _userService.GetUserAsync(User);
             var targetUser = await _userService.FindByIdAsync(userId);
             var targetUserRole = await _userOrganisationService.GetUserRoleAsync(userId, organisationId);
             var organisation = await _organisationService.GetAsync(organisationId);
 
-            //Check whether current user and target user in the same organisation or not
-
+            if (targetUser == null || organisation == null) return NotFound();
 
             var model = new VisitProfileViewModel
             {

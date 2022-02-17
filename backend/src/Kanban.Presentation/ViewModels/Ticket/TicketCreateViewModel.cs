@@ -70,9 +70,6 @@ namespace Kanban.Presentation.ViewModels.Ticket
                 .MinimumLength(3)
                 .WithMessage("Title min length can be 3")
 
-                .MaximumLength(25)
-                .WithMessage("Title max length can be 25");
-
             #endregion
 
             #region Description

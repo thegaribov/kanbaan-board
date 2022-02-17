@@ -78,10 +78,7 @@ namespace Kanban.Presentation.ViewModels.Ticket
                 .WithMessage("Title can't be empty")
 
                 .MinimumLength(3)
-                .WithMessage("Title min length can be 3")
-
-                .MaximumLength(25)
-                .WithMessage("Title max length can be 25");
+                .WithMessage("Title min length can be 3");
 
             #endregion
 

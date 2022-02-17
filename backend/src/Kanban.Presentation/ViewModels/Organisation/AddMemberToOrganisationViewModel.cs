@@ -88,7 +88,10 @@ namespace Kanban.Presentation.ViewModels.Organisation
                 .WithMessage("Password can't be empty")
 
                 .NotNull()
-                .WithMessage("Password can't be empty");
+                .WithMessage("Password can't be empty")
+
+                .Matches(@"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$")
+                .WithMessage("Minimum 6 characters, at least one letter and one number");
 
             #endregion
 

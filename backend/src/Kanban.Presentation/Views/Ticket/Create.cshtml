@@ -126,7 +126,12 @@
 }
 
 @section scripts{
-    <script src="~/client/pages/ticket/Create.js" asp-append-version="true"></script>
+
+    <script>
+         new Selectr('#users_multiselect', {
+            multiple: true
+        });
+    </script>
 
 }
 
