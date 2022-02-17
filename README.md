@@ -48,6 +48,9 @@ Basic task management system. Features :
 - Run command : `cat dumb_data_only.sql | docker exec -i postgre-db psql -U kanban-user kanban-db`
 - Default admin user credentials : 
 - Email = qaribovmahmud@gmail.com
+- Password = maho123321
+- Default member user credentials :
+- Email =  john@garibov.com
 - Password = maho123321 
 
 # Additional notes:
