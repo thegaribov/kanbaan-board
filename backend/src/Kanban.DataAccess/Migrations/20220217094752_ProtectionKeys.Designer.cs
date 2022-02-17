@@ -3,15 +3,17 @@ using System;
 using Kanban.DataAccess.Persistance.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Kanban.DataAccess.Migrations
 {
     [DbContext(typeof(KanbanContext))]
-    partial class KanbanContextModelSnapshot : ModelSnapshot
+    [Migration("20220217094752_ProtectionKeys")]
+    partial class ProtectionKeys
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

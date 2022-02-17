@@ -1,5 +1,6 @@
 ﻿using Kanban.Core.Entities;
 using Kanban.Core.Entities.Common;
+using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Kanban.DataAccess.Persistance.Contexts
 {
-    public class KanbanContext : IdentityDbContext<User>
+    public class KanbanContext : IdentityDbContext<User>, IDataProtectionKeyContext
     {
         public KanbanContext(DbContextOptions<KanbanContext> options) : base(options) { }
 
@@ -21,6 +22,9 @@ namespace Kanban.DataAccess.Persistance.Contexts
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<UserTicket> UserTickets { get; set; }
         public DbSet<NotifyEvent> NotifyEvents { get; set; }
+
+        //Data protection keys
+        public DbSet<DataProtectionKey> DataProtectionKeys { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
