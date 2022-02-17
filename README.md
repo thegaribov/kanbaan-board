@@ -55,7 +55,7 @@ Basic task management system. Features :
 
 # Additional Notes:
 - If you want to add your smtp email credentials you can do this by changing env file in `_development/envs/web.env`
-- Please don't forget to enable low-level application security from your host
+- Please don't forget to enable **less secure app access** from your email host
 - By default by test email account will be used
 
 
