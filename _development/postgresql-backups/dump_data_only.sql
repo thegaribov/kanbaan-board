@@ -62,14 +62,6 @@ INSERT INTO public."AspNetUsers" ("Id", "UpdatedAt", "CreatedAt", "UserName", "N
 --
 
 
-
---
--- Data for Name: DataProtectionKeys; Type: TABLE DATA; Schema: public; Owner: kanban-user
---
-
-INSERT INTO public."DataProtectionKeys" ("Id", "FriendlyName", "Xml") VALUES (1, 'key-de1dd770-8b81-4ff8-b8ff-d559b1c9eeef', '<key id="de1dd770-8b81-4ff8-b8ff-d559b1c9eeef" version="1"><creationDate>2022-02-17T10:21:02.9733367Z</creationDate><activationDate>2022-02-17T10:21:02.9399747Z</activationDate><expirationDate>2022-05-18T10:21:02.9399747Z</expirationDate><descriptor deserializerType="Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60"><descriptor><encryption algorithm="AES_256_CBC" /><validation algorithm="HMACSHA256" /><masterKey p4:requiresEncryption="true" xmlns:p4="http://schemas.asp.net/2015/03/dataProtection"><!-- Warning: the key below is in an unencrypted form. --><value>+J0+m3FEtyV2yxcAj7ivz31pqXTtAtvJmkkcXeMFv/SCTelaeThUEtwc0TXs+1xadY8vSDD/wkQ1NLskEM46/Q==</value></masterKey></descriptor></descriptor></key>');
-
-
 --
 -- Data for Name: Organisations; Type: TABLE DATA; Schema: public; Owner: kanban-user
 --
