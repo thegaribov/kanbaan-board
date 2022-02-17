@@ -87,6 +87,7 @@ namespace Kanban.Presentation.Controllers
             if (!isOwner) return NotFound();
 
             var organisation = await _organisationService.GetAsync(id);
+            if (organisation == null) return NotFound();
 
             var model = new OrganisationEditViewModel
             {
@@ -111,6 +112,7 @@ namespace Kanban.Presentation.Controllers
                 if (!isOwner) return NotFound();
 
                 var organisation = await _organisationService.GetAsync(model.Id);
+                if (organisation == null) return NotFound();
 
                 organisation.Name = model.Name;
                 organisation.Address = model.Address;
@@ -142,6 +144,7 @@ namespace Kanban.Presentation.Controllers
             if (!isOwner) return NotFound();
 
             var organisation = await _organisationService.GetAsync(organisationId);
+            if (organisation == null) return NotFound();
 
             var model = new AddMemberToOrganisationViewModel
             {
@@ -180,7 +183,7 @@ namespace Kanban.Presentation.Controllers
                 }
 
                 var organisation = await _organisationService.GetAsync(model.OrganisationId);
-
+                if (organisation == null) return NotFound();
                 // Create pivot record
 
                 var organisationUser = new UserOrganisation
@@ -217,7 +220,7 @@ namespace Kanban.Presentation.Controllers
             if (!isTakePartIn) return NotFound();
 
             var organisation = await _organisationService.GetAsync(organisationId);
-
+            if (organisation == null) return NotFound();
 
             var model = new BoardViewModel
             {
