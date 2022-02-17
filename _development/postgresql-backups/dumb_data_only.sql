@@ -71,13 +71,6 @@ INSERT INTO public."DataProtectionKeys" ("Id", "FriendlyName", "Xml") VALUES (1,
 
 
 --
--- Data for Name: NotifyEvents; Type: TABLE DATA; Schema: public; Owner: kanban-user
---
-
-INSERT INTO public."NotifyEvents" ("Id", "Label", "IsActive", "NotifyFor", "EmailEnabled", "EmailSubject", "EmailText", "CreatedAt", "UpdatedAt") VALUES (1, 'Account Activation', true, 1, true, 'Ticket assignment notification', 'Hi {{to_user_fullname}}, ticket ({{ticket_title}}) assigned to you please check it', '2022-02-17 10:21:02.862769', '0001-01-01 00:00:00');
-
-
---
 -- Data for Name: Organisations; Type: TABLE DATA; Schema: public; Owner: kanban-user
 --
 
@@ -97,25 +90,6 @@ INSERT INTO public."Tickets" ("Id", "Title", "Description", "Deadline", "Status"
 INSERT INTO public."Tickets" ("Id", "Title", "Description", "Deadline", "Status", "UpdatedAt", "CreatedAt", "OrganisationId") VALUES (6, 'SMTP problem ', 'Lorem Ipsum is simply dummy', '2022-02-26 00:00:00', 1, '0001-01-01 00:00:00', '2022-02-17 10:40:29.097098', 2);
 INSERT INTO public."Tickets" ("Id", "Title", "Description", "Deadline", "Status", "UpdatedAt", "CreatedAt", "OrganisationId") VALUES (7, 'CI/CD pipeline ', 'Lorem Ipsum is simply dummy', '2022-02-26 00:00:00', 4, '2022-02-17 10:46:41.101086', '2022-02-17 10:45:27.320382', 2);
 INSERT INTO public."Tickets" ("Id", "Title", "Description", "Deadline", "Status", "UpdatedAt", "CreatedAt", "OrganisationId") VALUES (8, 'CI/CD bugfix', 'Lorem Ipsum is simply dummy', '2022-02-18 00:00:00', 4, '0001-01-01 00:00:00', '2022-02-17 10:47:11.386876', 2);
-
-
---
--- Data for Name: Notifications; Type: TABLE DATA; Schema: public; Owner: kanban-user
---
-
-INSERT INTO public."Notifications" ("Id", "Extra", "NotifyEventId", "CreatedAt", "UserId", "TicketId") VALUES (1, '{"EmailSubject":"Ticket assignment notification","EmailText":"Hi Mahmood Garibov, ticket (API integration) assigned to you please check it"}', 1, '2022-02-17 10:30:11.684951', 'ea621d46-aae4-4a4b-854b-b79dda5dd10a', 1);
-INSERT INTO public."Notifications" ("Id", "Extra", "NotifyEventId", "CreatedAt", "UserId", "TicketId") VALUES (2, '{"EmailSubject":"Ticket assignment notification","EmailText":"Hi Mahmood Garibov, ticket (API integration) assigned to you please check it"}', 1, '2022-02-17 10:30:38.300813', 'ea621d46-aae4-4a4b-854b-b79dda5dd10a', 1);
-INSERT INTO public."Notifications" ("Id", "Extra", "NotifyEventId", "CreatedAt", "UserId", "TicketId") VALUES (3, '{"EmailSubject":"Ticket assignment notification","EmailText":"Hi Mahmood Garibov, ticket (API integration) assigned to you please check it"}', 1, '2022-02-17 10:33:44.378928', 'ea621d46-aae4-4a4b-854b-b79dda5dd10a', 1);
-INSERT INTO public."Notifications" ("Id", "Extra", "NotifyEventId", "CreatedAt", "UserId", "TicketId") VALUES (4, '{"EmailSubject":"Ticket assignment notification","EmailText":"Hi Elchin Qaribov, ticket (API integration) assigned to you please check it"}', 1, '2022-02-17 10:33:46.176167', '1dd94e73-fbb6-4662-9590-80a3c970d8fe', 1);
-INSERT INTO public."Notifications" ("Id", "Extra", "NotifyEventId", "CreatedAt", "UserId", "TicketId") VALUES (5, '{"EmailSubject":"Ticket assignment notification","EmailText":"Hi Mahmood Garibov, ticket (API integration) assigned to you please check it"}', 1, '2022-02-17 10:38:40.852132', 'ea621d46-aae4-4a4b-854b-b79dda5dd10a', 1);
-INSERT INTO public."Notifications" ("Id", "Extra", "NotifyEventId", "CreatedAt", "UserId", "TicketId") VALUES (6, '{"EmailSubject":"Ticket assignment notification","EmailText":"Hi Elchin Qaribov, ticket (API integration) assigned to you please check it"}', 1, '2022-02-17 10:38:42.274144', '1dd94e73-fbb6-4662-9590-80a3c970d8fe', 1);
-INSERT INTO public."Notifications" ("Id", "Extra", "NotifyEventId", "CreatedAt", "UserId", "TicketId") VALUES (7, '{"EmailSubject":"Ticket assignment notification","EmailText":"Hi Alise Green, ticket (Payment integration) assigned to you please check it"}', 1, '2022-02-17 10:39:31.083024', 'c00ddae1-0380-41bc-9825-f89e1ec21314', 4);
-INSERT INTO public."Notifications" ("Id", "Extra", "NotifyEventId", "CreatedAt", "UserId", "TicketId") VALUES (8, '{"EmailSubject":"Ticket assignment notification","EmailText":"Hi Mahmood Garibov, ticket (Docker setup) assigned to you please check it"}', 1, '2022-02-17 10:40:08.258347', 'ea621d46-aae4-4a4b-854b-b79dda5dd10a', 5);
-INSERT INTO public."Notifications" ("Id", "Extra", "NotifyEventId", "CreatedAt", "UserId", "TicketId") VALUES (9, '{"EmailSubject":"Ticket assignment notification","EmailText":"Hi Alise Green, ticket (Docker setup) assigned to you please check it"}', 1, '2022-02-17 10:40:09.853494', 'c00ddae1-0380-41bc-9825-f89e1ec21314', 5);
-INSERT INTO public."Notifications" ("Id", "Extra", "NotifyEventId", "CreatedAt", "UserId", "TicketId") VALUES (10, '{"EmailSubject":"Ticket assignment notification","EmailText":"Hi Alise Green, ticket (CI/CD pipeline ) assigned to you please check it"}', 1, '2022-02-17 10:45:27.485157', 'c00ddae1-0380-41bc-9825-f89e1ec21314', 7);
-INSERT INTO public."Notifications" ("Id", "Extra", "NotifyEventId", "CreatedAt", "UserId", "TicketId") VALUES (11, '{"EmailSubject":"Ticket assignment notification","EmailText":"Hi Alberto Washington, ticket (CI/CD pipeline ) assigned to you please check it"}', 1, '2022-02-17 10:45:29.731838', '2c2eee2e-d63c-4983-a9bf-5fa34be4cc18', 7);
-INSERT INTO public."Notifications" ("Id", "Extra", "NotifyEventId", "CreatedAt", "UserId", "TicketId") VALUES (12, '{"EmailSubject":"Ticket assignment notification","EmailText":"Hi Alise Green, ticket (CI/CD pipeline ) assigned to you please check it"}', 1, '2022-02-17 10:46:41.138236', 'c00ddae1-0380-41bc-9825-f89e1ec21314', 7);
-INSERT INTO public."Notifications" ("Id", "Extra", "NotifyEventId", "CreatedAt", "UserId", "TicketId") VALUES (13, '{"EmailSubject":"Ticket assignment notification","EmailText":"Hi John Kennedy, ticket (CI/CD bugfix) assigned to you please check it"}', 1, '2022-02-17 10:47:11.403325', '6b83c1a5-f39e-40fb-8e06-cbe48393925b', 8);
 
 
 --
