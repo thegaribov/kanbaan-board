@@ -39,6 +39,7 @@ Basic task management system. Features :
 
 # How To Run
 - Clone repository and open `kanban` folder
+- Docker desktop should be active in Windows OS
 - Run docker : `docker-compose -f _development/docker-compose.yml up --build -d`
 - Application will be started on : `http://localhost:5000/`
 - I added additional container (`portrainer`) to manage other containers, so you can check it :  `http://localhost:9000/`  
