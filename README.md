@@ -1,7 +1,7 @@
 # About system
 Basic task management system. Features :
 1. Create organisation with default admin user from register
-2. Edit organisation deatails
+2. Edit organisation details
 3. Add new users to organisation.
 4. New users can login with given credentials
 5. View user's profile
