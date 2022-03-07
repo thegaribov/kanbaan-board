@@ -25,6 +25,7 @@ Basic task management system. Features :
 - Unit Of Work
 - Repository & Generic Repository
 - ORM
+- MVC
 - Inversion of Control / Dependency injection
 
 # Sotware architecture
